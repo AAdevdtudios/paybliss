@@ -1,0 +1,42 @@
+name: paybliss
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment:
+  sdk: ">=2.19.3 <3.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  flutter_screenutil: any
+  google_fonts: any
+  get_storage: any
+  http: any
+  get: 4.6.5
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: 2.0.2
+  flutter_launcher_icons: "^0.13.1"
+  flutter_native_splash: any
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icons/
+    - assets/svg/
+    - assets/images/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/transparentLogo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/icons/transparentLogo.png
+  color_dark: "#000000"
+  image_dark: assets/icons/transparentLogo.png
