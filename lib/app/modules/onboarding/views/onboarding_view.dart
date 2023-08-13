@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 // ignore: depend_on_referenced_packages
@@ -6,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'package:get/get.dart';
+import 'package:paybliss/app/modules/signup/views/signup_view.dart';
 
 import '../controllers/onboarding_controller.dart';
 
@@ -49,20 +51,12 @@ class OnboardingView extends GetView<OnboardingController> {
                           ),
                           TextSpan(
                             text: controller.onboardItems[index].sub,
-                            style: GoogleFonts.inter(
-                              color: const Color(0xffF8B858),
-                              fontSize: 25.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: Theme.of(context).textTheme.labelLarge,
                           ),
                         ],
                       ),
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.inter(
-                        color: Colors.black,
-                        fontSize: 25.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.bodyLarge,
                     )
                   ],
                 ),
@@ -96,7 +90,9 @@ class OnboardingView extends GetView<OnboardingController> {
           SizedBox(
             height: 62,
             child: ElevatedButton(
-              onPressed: () => {},
+              onPressed: () => Get.to(
+                const SignupView(),
+              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xffF8B858),
                 foregroundColor: Colors.black,
@@ -108,28 +104,22 @@ class OnboardingView extends GetView<OnboardingController> {
               child: const Text('Get Started'),
             ),
           ),
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: 20.h,
           ),
           Text.rich(
             TextSpan(
               children: [
                 const TextSpan(text: 'Have an account? '),
                 TextSpan(
-                  text: 'Sign Up',
-                  style: GoogleFonts.inter(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xffF8B858),
-                  ),
+                  text: 'Sign In',
+                  style: Theme.of(context).textTheme.labelMedium,
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => print('Tap Here onTap'),
                 ),
               ],
             ),
-            style: GoogleFonts.inter(
-              fontSize: 20.sp,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
+            style: Theme.of(context).textTheme.bodyMedium,
             textAlign: TextAlign.center,
           ),
         ],

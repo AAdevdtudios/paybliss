@@ -25,7 +25,7 @@ class OnboardingController extends GetxController {
 
   List<OnboardItems> onboardItems = [
     OnboardItems(
-        image: 'assets/images/slide-1.png',
+        image: 'assets/images/slide1.png',
         position: -10,
         description: 'Convert between currencies at ',
         sub: 'best exchange rates'),
