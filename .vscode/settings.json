@@ -1,6 +1,7 @@
 {
-  "cSpell.words": ["Paybliss", "Signup"],
+  "cSpell.words": ["Autovalidate", "Paybliss", "Signup"],
   "editor.codeActionsOnSave": {
     "source.fixAll": true
-  }
+  },
+  "editor.accessibilitySupport": "off"
 }

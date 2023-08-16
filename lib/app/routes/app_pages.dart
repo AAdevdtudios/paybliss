@@ -1,10 +1,15 @@
 import 'package:get/get.dart';
 
-import '../data/storageData.dart';
+import '../modules/forgot_password/bindings/forgot_password_binding.dart';
+import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/login/bindings/login_binding.dart';
+import '../modules/login/views/login_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
+import '../modules/pin/bindings/pin_binding.dart';
+import '../modules/pin/views/pin_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
 
@@ -16,6 +21,7 @@ class AppPages {
   // ignore: constant_identifier_names
   static const INITIAL = Routes.HOME;
   static const ONBOARDING = Routes.ONBOARDING;
+  static const PINCODE = Routes.PIN;
 
   static final routes = [
     GetPage(
@@ -32,6 +38,35 @@ class AppPages {
       name: _Paths.SIGNUP,
       page: () => const SignupView(),
       binding: SignupBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGIN,
+      page: () => const LoginView(),
+      binding: LoginBinding(),
+      children: [
+        GetPage(
+          name: _Paths.LOGIN,
+          page: () => const LoginView(),
+          binding: LoginBinding(),
+        ),
+      ],
+    ),
+    GetPage(
+      name: _Paths.FORGOT_PASSWORD,
+      page: () => const ForgotPasswordView(),
+      binding: ForgotPasswordBinding(),
+      children: [
+        GetPage(
+          name: _Paths.FORGOT_PASSWORD,
+          page: () => const ForgotPasswordView(),
+          binding: ForgotPasswordBinding(),
+        ),
+      ],
+    ),
+    GetPage(
+      name: _Paths.PIN,
+      page: () => const PinView(),
+      binding: PinBinding(),
     ),
   ];
 }

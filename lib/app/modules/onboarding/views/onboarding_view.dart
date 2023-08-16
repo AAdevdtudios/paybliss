@@ -1,14 +1,12 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-// ignore: depend_on_referenced_packages
-import 'package:google_fonts/google_fonts.dart';
-// ignore: depend_on_referenced_packages
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-import 'package:paybliss/app/modules/signup/views/signup_view.dart';
+import 'package:paybliss/app/modules/login/views/login_view.dart';
 
+import '../../signup/views/signup_view.dart';
 import '../controllers/onboarding_controller.dart';
 
 class OnboardingView extends GetView<OnboardingController> {
@@ -16,113 +14,83 @@ class OnboardingView extends GetView<OnboardingController> {
   @override
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
+    const Color kDarkBlueColor = Color(0xFFEE9105);
     return Scaffold(
-      body: ListView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15,
+      body: OnBoardingSlider(
+        finishButtonText: 'Create account',
+        onFinish: () => Get.to(const SignupView()),
+        finishButtonStyle: FinishButtonStyle(
+          backgroundColor: kDarkBlueColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50),
+          ),
         ),
-        children: [
-          SizedBox(
-            height: 700.h,
-            width: double.infinity,
-            child: PageView(
-              controller: controller.pageController,
-              onPageChanged: (val) => controller.changeVal(val),
-              children: List.generate(
-                controller.onboardItems.length,
-                (index) => ListView(
-                  children: [
-                    Obx(
-                      () => SizedBox(
+        skipTextButton: const Text(
+          'Skip',
+          style: TextStyle(
+            fontSize: 16,
+            color: kDarkBlueColor,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        trailing: const Text(
+          'Login',
+          style: TextStyle(
+            fontSize: 16,
+            color: kDarkBlueColor,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        trailingFunction: () => Get.to(const LoginView()),
+        controllerColor: kDarkBlueColor,
+        totalPage: 4,
+        headerBackgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        pageBackgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        background: controller.onboardItems
+            .map(
+              (e) => Image.asset(
+                e.image,
+                height: 400,
+              ),
+            )
+            .toList(),
+        speed: 1.8,
+        pageBodies: controller.onboardItems
+            .map((e) => Container(
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
                         height: 500.h,
-                        width: double.infinity,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child:
-                              Image.asset(controller.onboardItems[index].image),
+                      ),
+                      Text(
+                        e.title,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: kDarkBlueColor,
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                    ),
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: controller.onboardItems[index].description,
-                          ),
-                          TextSpan(
-                            text: controller.onboardItems[index].sub,
-                            style: Theme.of(context).textTheme.labelLarge,
-                          ),
-                        ],
+                      const SizedBox(
+                        height: 20,
                       ),
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Obx(
-            () => Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: List.generate(
-                controller.onboardItems.length,
-                (index) => AnimatedContainer(
-                  duration: const Duration(milliseconds: 100),
-                  height: 15,
-                  width: 15,
-                  margin: const EdgeInsets.symmetric(horizontal: 4),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: controller.currentView.value == index
-                        ? const Color(0xffF8B858)
-                        : const Color(0xff312E2E),
+                      Text(
+                        e.sub,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              fontSize: 18.0.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                    ],
                   ),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-            height: 62,
-            child: ElevatedButton(
-              onPressed: () => Get.to(
-                const SignupView(),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xffF8B858),
-                foregroundColor: Colors.black,
-                textStyle: GoogleFonts.inter(
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              child: const Text('Get Started'),
-            ),
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          Text.rich(
-            TextSpan(
-              children: [
-                const TextSpan(text: 'Have an account? '),
-                TextSpan(
-                  text: 'Sign In',
-                  style: Theme.of(context).textTheme.labelMedium,
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => print('Tap Here onTap'),
-                ),
-              ],
-            ),
-            style: Theme.of(context).textTheme.bodyMedium,
-            textAlign: TextAlign.center,
-          ),
-        ],
+                ))
+            .toList(),
       ),
     );
   }

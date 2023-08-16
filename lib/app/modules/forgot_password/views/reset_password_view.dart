@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:paybliss/app/modules/forgot_password/controllers/forgot_password_controller.dart';
 
-import '../controllers/signup_controller.dart';
-
-class SignupView extends GetView<SignupController> {
-  const SignupView({Key? key}) : super(key: key);
+class ResetPasswordView extends GetView {
+  const ResetPasswordView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(SignupController());
+    var controller = Get.put(ForgotPasswordController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register'),
+        title: const Text('ResetPasswordView'),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -21,7 +20,7 @@ class SignupView extends GetView<SignupController> {
           child: ListView(
             children: [
               Text(
-                'Get Started',
+                'Reset Password',
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       fontSize: 40.sp,
                     ),
@@ -30,7 +29,7 @@ class SignupView extends GetView<SignupController> {
                 height: 10.h,
               ),
               Text(
-                'Create an account so you can start pay your bills and purchase top-ups faster',
+                'Set up your new password for your email',
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontSize: 20.sp,
                     ),
@@ -43,63 +42,6 @@ class SignupView extends GetView<SignupController> {
                 child: Expanded(
                   child: Column(
                     children: [
-                      TextFormField(
-                        controller: controller.fullName,
-                        keyboardType: TextInputType.name,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        onTapOutside: (event) => {},
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              fontSize: 20.sp,
-                            ),
-                        decoration: const InputDecoration(
-                          hintText: 'Full Name',
-                          prefixIcon: Icon(
-                            Icons.account_box,
-                          ),
-                        ),
-                        validator: (value) => GetUtils.isLengthLessThan(
-                                3, controller.fullName.text.length)
-                            ? null
-                            : "Full name too short",
-                      ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      TextFormField(
-                        controller: controller.email,
-                        keyboardType: TextInputType.emailAddress,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              fontSize: 20.sp,
-                            ),
-                        decoration: const InputDecoration(
-                          hintText: 'Email',
-                          prefixIcon: Icon(Icons.email),
-                        ),
-                        validator: (value) =>
-                            GetUtils.isEmail(controller.email.text)
-                                ? null
-                                : "Full name too short",
-                      ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      TextFormField(
-                        controller: controller.phone,
-                        keyboardType: TextInputType.number,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              fontSize: 20.sp,
-                            ),
-                        decoration: const InputDecoration(
-                          hintText: 'Phone Number',
-                          prefixIcon: Icon(Icons.phone),
-                        ),
-                        validator: (value) =>
-                            GetUtils.isPhoneNumber(controller.phone.text)
-                                ? null
-                                : "Invalid Phone number",
-                      ),
                       SizedBox(
                         height: 30.h,
                       ),
@@ -169,21 +111,6 @@ class SignupView extends GetView<SignupController> {
                       SizedBox(
                         height: 30.h,
                       ),
-                      TextFormField(
-                        controller: controller.referrals,
-                        keyboardType: TextInputType.text,
-                        autovalidateMode: AutovalidateMode.always,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              fontSize: 20.sp,
-                            ),
-                        decoration: const InputDecoration(
-                          hintText: 'Referral (Optional)',
-                          prefixIcon: Icon(Icons.supervisor_account),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
                       SizedBox(
                         width: double.infinity,
                         height: 70.h,
@@ -195,9 +122,9 @@ class SignupView extends GetView<SignupController> {
                             ),
                           ),
                           child: Text(
-                            "Register",
+                            "Rest Password",
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.white70,
                               fontSize: 25.sp,
                             ),
                           ),
