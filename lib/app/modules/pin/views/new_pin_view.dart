@@ -2,25 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:paybliss/app/modules/pin/controllers/pin_controller.dart';
 
-import '../controllers/main_pin_controller.dart';
-import '../controllers/pin_controller.dart';
-
-class PinView extends GetView<PinController> {
-  const PinView({Key? key}) : super(key: key);
+class NewPinView extends GetView {
+  const NewPinView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(MainPinController());
+    var controller = Get.put(PinController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Security Pin'),
+        title: const Text('Create Pin'),
         centerTitle: true,
       ),
       body: ListView(
         padding: const EdgeInsets.all(8.0),
         children: [
           Text(
-            'Login Pin',
+            'Create Your Security Pin',
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   fontSize: 30.sp,
                 ),
@@ -29,7 +27,7 @@ class PinView extends GetView<PinController> {
             height: 10.h,
           ),
           Text(
-            'Enter your security pin to login',
+            'We would require the pin to process your transactions',
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   fontSize: 20.sp,
                 ),
@@ -75,15 +73,7 @@ class PinView extends GetView<PinController> {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: 12,
               itemBuilder: (context, index) => index == 9
-                  ? TextButton(
-                      style: TextButton.styleFrom(
-                        splashFactory: NoSplash.splashFactory,
-                      ),
-                      onPressed: () {},
-                      child: const Icon(
-                        Icons.fingerprint,
-                      ),
-                    )
+                  ? const SizedBox()
                   : TextButton(
                       style: TextButton.styleFrom(
                         splashFactory: NoSplash.splashFactory,

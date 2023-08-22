@@ -30,11 +30,8 @@ void main() async {
           theme: ThemeModeData().lightMode,
           darkTheme: ThemeModeData().darkMode,
           debugShowCheckedModeBanner: false,
-          initialRoute: box.read('jwt') == null
-              ? AppPages.ONBOARDING
-              : box.read('pin_code') == null
-                  ? AppPages.INITIAL
-                  : AppPages.PINCODE,
+          initialRoute:
+              box.read('jwt') == null ? AppPages.ONBOARDING : AppPages.PINCODE,
           getPages: AppPages.routes,
         );
       },

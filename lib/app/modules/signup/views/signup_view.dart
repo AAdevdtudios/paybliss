@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 
+import '../../pin/views/new_pin_view.dart';
 import '../controllers/signup_controller.dart';
 
 class SignupView extends GetView<SignupController> {
@@ -188,7 +189,7 @@ class SignupView extends GetView<SignupController> {
                         width: double.infinity,
                         height: 70.h,
                         child: ElevatedButton(
-                          onPressed: () => {},
+                          onPressed: () => Get.off(const NewPinView()),
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),

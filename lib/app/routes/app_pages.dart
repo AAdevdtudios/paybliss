@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../main.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -9,6 +10,7 @@ import '../modules/login/views/login_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
 import '../modules/pin/bindings/pin_binding.dart';
+import '../modules/pin/views/new_pin_view.dart';
 import '../modules/pin/views/pin_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
@@ -65,7 +67,8 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PIN,
-      page: () => const PinView(),
+      page: () =>
+          box.read('pin_code') == null ? const NewPinView() : const PinView(),
       binding: PinBinding(),
     ),
   ];

@@ -26,6 +26,13 @@ class ThemeModeData {
       color: Colors.white,
     ),
     highlightColor: Colors.white70,
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: Color(0xfff8b858),
+      selectedIconTheme: IconThemeData(
+        color: Colors.black,
+      ),
+      unselectedItemColor: Colors.black38,
+    ),
     appBarTheme: AppBarTheme(
       color: Colors.black,
       titleTextStyle: GoogleFonts.inter(
@@ -94,6 +101,13 @@ class ThemeModeData {
     highlightColor: Colors.black54,
     iconTheme: const IconThemeData(
       color: Colors.black,
+    ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: Color(0xfff8b858),
+      selectedIconTheme: IconThemeData(
+        color: Colors.black,
+      ),
+      unselectedItemColor: Colors.black38,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(

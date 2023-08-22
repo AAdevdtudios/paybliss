@@ -11,7 +11,7 @@ class ResetPasswordView extends GetView {
     var controller = Get.put(ForgotPasswordController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ResetPasswordView'),
+        title: const Text('Reset Password'),
         centerTitle: true,
       ),
       body: SafeArea(

@@ -12,7 +12,7 @@ class OtpView extends GetView<ForgotPasswordController> {
     var controller = Get.put(ForgotPasswordController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('OtpView'),
+        title: const Text('OTP'),
         centerTitle: true,
       ),
       body: Padding(
