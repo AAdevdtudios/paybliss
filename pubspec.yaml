@@ -11,6 +11,7 @@ dependencies:
   google_fonts: any
   flutter_onboarding_slider: ^1.0.9
   flutter_screen_lock: any
+  u_credit_card: any
   get_storage: any
   http: any
   get: 4.6.5

@@ -56,10 +56,23 @@ class HomeView extends GetView<HomeController> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  'Hey Elijah 👋',
-                  style: theme.textTheme.bodyLarge,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Hey Elijah 👋',
+                      style: theme.textTheme.bodyLarge,
+                    ),
+                    Text(
+                      'What bills would you like to pay with Paybliss',
+                      style: theme.textTheme.bodyMedium!.copyWith(
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                  ],
                 ),
                 Row(
                   children: [
