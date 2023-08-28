@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:paybliss/app/data/const_data.dart';
 
+import '../controllers/home_controller.dart';
 import '../controllers/main_home_controller.dart';
 
 class MainHomeView extends GetView {
@@ -11,220 +12,174 @@ class MainHomeView extends GetView {
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(MainHomeController());
+    var homeController = Get.put(HomeController());
     var theme = Theme.of(context);
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Available balance',
-          style: theme.textTheme.bodyMedium!.copyWith(
-            fontSize: 17.sp,
-          ),
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              '₦ 100K',
-              style: theme.textTheme.labelLarge!.copyWith(
-                fontSize: 50.sp,
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.remove_red_eye,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 30.h,
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: ElevatedButton.icon(
-                onPressed: () => {},
-                icon: Icon(
-                  Icons.arrow_downward,
-                  color: theme.textTheme.bodyMedium!.color,
-                ),
-                label: Text(
-                  'Deposit',
-                  style: theme.textTheme.bodyLarge!.copyWith(
-                    fontSize: 20.sp,
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: TextButton.icon(
-                onPressed: () => {},
-                icon: Icon(
-                  Icons.arrow_upward,
-                  color: theme.textTheme.bodyMedium!.color,
-                ),
-                label: Text(
-                  'Withdraw',
-                  style: theme.textTheme.bodyLarge!.copyWith(
-                    fontSize: 20.sp,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 30.h,
-        ),
         Container(
-          decoration: BoxDecoration(
-            color: const Color(0xffFFFCF5),
-            borderRadius: BorderRadius.circular(10),
-          ),
           padding: const EdgeInsets.symmetric(
-            horizontal: 3,
-            vertical: 20,
+            horizontal: 10,
+            vertical: 10,
           ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          decoration: BoxDecoration(
+            color: theme.primaryColor,
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
+          ),
+          child: Stack(
+            fit: StackFit.passthrough,
+            clipBehavior: Clip.none,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Icon(
-                  Icons.error,
-                  color: Colors.red[300],
-                ),
-              ),
-              SizedBox(
-                width: 10.w,
-              ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Verify your identity",
-                    style: TextStylesItem().largeText.copyWith(
-                          color: Colors.black,
-                        ),
-                  ),
-                  SizedBox(
-                    width: 300.w,
-                    child: Text(
-                      "In order to comply with local regulation, we need to know more about you",
-                      maxLines: 2,
-                      style: TextStylesItem().mediumText.copyWith(
-                            color: Colors.black26,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const CircleAvatar(),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Welcome back, 👋',
+                            style: TextStylesItem().mediumText.copyWith(
+                                  color: Colors.white,
+                                ),
                           ),
-                    ),
+                          Text(
+                            'John Doe',
+                            style: TextStylesItem().largeText.copyWith(
+                                  color: Colors.black,
+                                ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      CircleAvatar(
+                        backgroundColor: Colors.orange[100],
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.notifications,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 20.h,
                   ),
-                  GestureDetector(
-                    onTap: () => {},
-                    child: Text(
-                      'Click here to get started',
-                      style: TextStylesItem().mediumText.copyWith(
-                            color: Colors.red[300],
-                          ),
-                    ),
+                  Text(
+                    "₦ 2,000",
+                    style: TextStylesItem().largeText.copyWith(
+                          fontSize: 60.sp,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.black,
+                        ),
+                  ),
+                  SizedBox(
+                    height: 20.h,
                   ),
                 ],
+              ),
+              Positioned(
+                bottom: -30,
+                left: 70.r,
+                right: 70.r,
+                child: SizedBox(
+                  height: 60.h,
+                  child: ElevatedButton(
+                    onPressed: () => {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(
+                        0xffF4E4CB,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Text(
+                      "Fund Wallet",
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
         ),
         SizedBox(
-          height: 30.h,
+          height: 60.h,
         ),
-        Row(
-          children: [
-            Text(
-              "Top Services",
-              style: theme.textTheme.bodyLarge,
-            ),
-            const Icon(
-              Icons.arrow_right_alt,
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 20.h,
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: controller.slides
-                .map((e) => Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 10,
-                      ),
-                      margin: const EdgeInsets.symmetric(horizontal: 10),
-                      decoration: BoxDecoration(
-                        color: const Color(0xffFFFCF5),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.max,
+                children: controller.services
+                    .map(
+                      (e) => Expanded(
+                        child: InkWell(
+                          onTap: () => e.name == "More"
+                              ? homeController.currentTab.value = 1
+                              : Get.to(e.path),
+                          child: Column(
                             children: [
-                              Text(
-                                e.name,
-                                style: TextStylesItem().largeText.copyWith(
-                                      fontSize: 20.sp,
-                                      color: Colors.black,
-                                    ),
+                              CircleAvatar(
+                                backgroundColor:
+                                    const Color(0xffF8B858).withAlpha(26),
+                                radius: 30.r,
+                                child: Icon(
+                                  e.icon,
+                                  color: Colors.orange,
+                                ),
                               ),
                               const SizedBox(
-                                width: 20,
+                                height: 10,
                               ),
-                              const Icon(
-                                Icons.hotel_class_outlined,
-                                color: Colors.black,
+                              Text(
+                                e.name,
+                                style: theme.textTheme.bodyMedium,
                               ),
                             ],
                           ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          SizedBox(
-                            width: 230.w,
-                            height: 100.h,
-                            child: Text(
-                              e.description,
-                              maxLines: 3,
-                              style: TextStylesItem().mediumText.copyWith(
-                                    fontSize: 17.sp,
-                                    color: Colors.black45,
-                                  ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    ))
-                .toList(),
+                    )
+                    .toList(),
+              ),
+              SizedBox(
+                height: 30.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Last transaction",
+                    style: theme.textTheme.bodyMedium!.copyWith(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () => {},
+                    child: Text(
+                      "more",
+                      style: theme.textTheme.labelMedium,
+                    ),
+                  ),
+                ],
+              )
+            ],
           ),
-        ),
-        SizedBox(
-          height: 30.h,
-        ),
-        Row(
-          children: [
-            Text(
-              "Last Transaction",
-              style: theme.textTheme.bodyLarge,
-            ),
-            const Icon(
-              Icons.arrow_right_alt,
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 20.h,
         ),
       ],
     );

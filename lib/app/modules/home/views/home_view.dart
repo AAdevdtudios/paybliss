@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,11 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
     var controller = Get.put(HomeController());
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Color(0xfff8b858),
+      ),
+    );
     var theme = Theme.of(context);
     return Scaffold(
       bottomNavigationBar: Obx(
@@ -47,60 +53,19 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
       ),
-      body: SafeArea(
-        child: ListView(
-          padding: EdgeInsets.symmetric(
-            horizontal: 25.r,
-            vertical: 20.r,
+      body: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          SizedBox(
+            height: 20.h,
           ),
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Hey Elijah 👋',
-                      style: theme.textTheme.bodyLarge,
-                    ),
-                    Text(
-                      'What bills would you like to pay with Paybliss',
-                      style: theme.textTheme.bodyMedium!.copyWith(
-                        fontSize: 14.sp,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.qr_code_2),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.notifications,
-                      ),
-                    ),
-                  ],
-                )
-              ],
+          Obx(
+            () => PageStorage(
+              bucket: controller.pageStorageBucket,
+              child: controller.screens[controller.currentTab.value],
             ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Obx(
-              () => PageStorage(
-                bucket: controller.pageStorageBucket,
-                child: controller.screens[controller.currentTab.value],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

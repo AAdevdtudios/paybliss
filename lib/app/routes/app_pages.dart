@@ -14,6 +14,8 @@ import '../modules/pin/views/new_pin_view.dart';
 import '../modules/pin/views/pin_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
+import '../modules/vtu_screens/bindings/vtu_screens_binding.dart';
+import '../modules/vtu_screens/views/vtu_screens_view.dart';
 
 part 'app_routes.dart';
 
@@ -70,6 +72,11 @@ class AppPages {
       page: () =>
           box.read('pin_code') == null ? const NewPinView() : const PinView(),
       binding: PinBinding(),
+    ),
+    GetPage(
+      name: _Paths.VTU_SCREENS,
+      page: () => const VtuScreensView(),
+      binding: VtuScreensBinding(),
     ),
   ];
 }

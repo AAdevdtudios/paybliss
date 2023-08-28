@@ -9,6 +9,7 @@ abstract class Routes {
   static const LOGIN = _Paths.LOGIN;
   static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
   static const PIN = _Paths.PIN;
+  static const VTU_SCREENS = _Paths.VTU_SCREENS;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const LOGIN = '/login';
   static const FORGOT_PASSWORD = '/forgot-password';
   static const PIN = '/pin';
+  static const VTU_SCREENS = '/vtu-screens';
 }

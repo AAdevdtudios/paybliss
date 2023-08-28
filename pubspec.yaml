@@ -9,8 +9,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_screenutil: any
   google_fonts: any
+  flutter_svg: any
   flutter_onboarding_slider: ^1.0.9
+  mask_input_formatter: any
+  contained_tab_bar_view: any
   flutter_screen_lock: any
+  icons_plus: any
+  cool_dropdown: any
   u_credit_card: any
   get_storage: any
   http: any
@@ -31,6 +36,7 @@ flutter:
     - assets/icons/
     - assets/svg/
     - assets/images/
+    - assets/json/
 
 flutter_launcher_icons:
   android: "launcher_icon"

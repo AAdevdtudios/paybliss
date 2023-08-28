@@ -1,31 +1,33 @@
 import 'package:get/get.dart';
+import 'package:icons_plus/icons_plus.dart';
+import 'package:paybliss/app/modules/home/controllers/service_controller.dart';
 
-class RowItems {
-  final String name;
-  final String image;
-  final String description;
-
-  RowItems(
-      {required this.name, required this.image, required this.description});
-}
+import '../../vtu_screens/views/airtime_vtu_view.dart';
+import '../../vtu_screens/views/cable_vtu_view.dart';
+import '../../vtu_screens/views/data_vtu_view.dart';
+import '../../vtu_screens/views/electricity_vtu_view.dart';
 
 class MainHomeController extends GetxController {
-  List<RowItems> slides = [
-    RowItems(
-      name: "Betting",
-      description:
-          "Quick access to deposit money in your preferred betting platform",
-      image: "",
+  List<ServicesItem> services = [
+    ServicesItem(
+      name: "Airtime",
+      icon: Bootstrap.phone,
+      path: const AirtimeVtuView(),
     ),
-    RowItems(
-      name: "Traveling",
-      description: "Book for flight ticket at your own comfort",
-      image: "",
+    ServicesItem(
+      name: "Data",
+      icon: Bootstrap.bar_chart_fill,
+      path: const DataVtuView(),
     ),
-    RowItems(
-      name: "Hotel",
-      description: "Book for Hotels near you and reserve a space",
-      image: "",
+    ServicesItem(
+      name: "Cable Tv",
+      icon: Bootstrap.tv_fill,
+      path: const CableVtuView(),
+    ),
+    ServicesItem(
+      name: "More",
+      icon: IonIcons.ellipsis_horizontal_circle_sharp,
+      path: const ElectricityVtuView(),
     ),
   ];
 }
