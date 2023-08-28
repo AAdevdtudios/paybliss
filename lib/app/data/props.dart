@@ -10,7 +10,7 @@ class DropIcon {
   });
 }
 
-List<String> Mtn = [
+List<String> MtnNet = [
   "0703",
   "0706",
   "0803",
@@ -20,7 +20,7 @@ List<String> Mtn = [
   "0916",
   "0704"
 ];
-List<String> Airtel = [
+List<String> AirtelNet = [
   "0701",
   "0708",
   "0812",
@@ -32,7 +32,7 @@ List<String> Airtel = [
   "0907",
   "0912"
 ];
-List<String> Glo = [
+List<String> GloNet = [
   "0815",
   "0811",
   "0805",
@@ -41,7 +41,7 @@ List<String> Glo = [
   "0905",
   "0915",
 ];
-List<String> Eti = [
+List<String> EtiNet = [
   "0809",
   "0818",
   "0817",

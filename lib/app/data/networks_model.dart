@@ -1,29 +1,10 @@
 class Networks {
-  Network? network;
-
-  Networks({this.network});
-
-  Networks.fromJson(Map<String, dynamic> json) {
-    network =
-        json['Network'] != null ? Network?.fromJson(json['Network']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    if (network != null) {
-      data['Network'] = network?.toJson();
-    }
-    return data;
-  }
-}
-
-class Network {
   Airtel? airtel;
   Airtel? mTN;
 
-  Network({this.airtel, this.mTN});
+  Networks({this.airtel, this.mTN});
 
-  Network.fromJson(Map<String, dynamic> json) {
+  Networks.fromJson(Map<String, dynamic> json) {
     airtel = json['Airtel'] != null ? Airtel?.fromJson(json['Airtel']) : null;
     mTN = json['MTN'] != null ? Airtel?.fromJson(json['MTN']) : null;
   }

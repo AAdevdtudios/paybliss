@@ -40,13 +40,13 @@ class AirtimeController extends GetxController {
     makeChecks();
     if (val.length >= 3) {
       val = val.replaceAll("-", "");
-      if (Mtn.contains(val)) {
+      if (MtnNet.contains(val)) {
         currentVal.value = 0;
-      } else if (Airtel.contains(val)) {
+      } else if (AirtelNet.contains(val)) {
         currentVal.value = 1;
-      } else if (Glo.contains(val)) {
+      } else if (GloNet.contains(val)) {
         currentVal.value = 2;
-      } else if (Eti.contains(val)) {
+      } else if (EtiNet.contains(val)) {
         currentVal.value = 3;
       }
     }

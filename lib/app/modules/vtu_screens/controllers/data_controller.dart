@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:cool_dropdown/controllers/dropdown_controller.dart';
 import 'package:cool_dropdown/models/cool_dropdown_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:paybliss/app/data/props.dart';
+import 'package:flutter/services.dart' show rootBundle;
+
+import '../../../data/networks_model.dart';
 
 class DataController extends GetxController {
   var phoneNumber = TextEditingController();
@@ -12,8 +17,24 @@ class DataController extends GetxController {
   RxInt currentVal = 0.obs;
   RxBool isValid = false.obs;
   List<CoolDropdownItem<DropIcon>> pokemonDropdownItems = [];
+  Rx<Networks> allNetwork = Networks().obs;
+  List<String> variant = ["Daily", "Weekly", "Monthly"];
 
-  Future<void> getDataValues() async {}
+  @override
+  void onReady() {
+    getDataValues();
+    super.onReady();
+  }
+
+  Future<void> getDataValues() async {
+    try {
+      var feedNetwork =
+          await rootBundle.loadString("assets/json/networks.json");
+      allNetwork.value = Networks.fromJson(jsonDecode(feedNetwork));
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
 
   List<DropIcon> networks = [
     DropIcon(
@@ -41,13 +62,13 @@ class DataController extends GetxController {
     makeChecks();
     if (val.length >= 3) {
       val = val.replaceAll("-", "");
-      if (Mtn.contains(val)) {
+      if (MtnNet.contains(val)) {
         currentVal.value = 0;
-      } else if (Airtel.contains(val)) {
+      } else if (AirtelNet.contains(val)) {
         currentVal.value = 1;
-      } else if (Glo.contains(val)) {
+      } else if (GloNet.contains(val)) {
         currentVal.value = 2;
-      } else if (Eti.contains(val)) {
+      } else if (EtiNet.contains(val)) {
         currentVal.value = 3;
       }
     }

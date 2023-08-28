@@ -8,14 +8,25 @@ class CableVtuView extends GetView {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CableVtuView'),
+        title: const Text('CableTv'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'CableVtuView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: ListView(
+        children: [
+          DropdownButton(
+            items: const [
+              DropdownMenuItem(
+                value: "hello",
+                child: Text("Hello"),
+              ),
+              DropdownMenuItem(
+                value: "special",
+                child: Text("Special"),
+              ),
+            ],
+            onChanged: (val) {},
+          ),
+        ],
       ),
     );
   }

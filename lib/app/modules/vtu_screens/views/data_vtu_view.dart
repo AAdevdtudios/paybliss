@@ -22,6 +22,7 @@ class DataVtuView extends GetView {
         () => Form(
           key: controller.formKey,
           child: ListView(
+            physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.all(8),
             children: [
               TextFormField(
@@ -83,70 +84,81 @@ class DataVtuView extends GetView {
                 ),
               ),
               SizedBox(
+                height: 30.h,
+              ),
+              SizedBox(
                 width: double.infinity,
                 height: 700.h,
                 child: ContainedTabBarView(
-                  tabs: const [
-                    Text("Tab 1"),
-                    Text("Tab 2"),
-                  ],
+                  tabs: List.generate(
+                    controller.variant.length,
+                    (index) => Text(
+                      controller.variant[index],
+                    ),
+                  ),
                   views: [
                     SizedBox(
                       child: ListView(
-                        children: [
-                          ListTile(
+                        children: List.generate(
+                          controller.allNetwork.value.mTN!.daily!.length,
+                          (index) => ListTile(
                             onTap: () {},
-                            title: const Text("1GB - 100"),
-                            subtitle: const Text("Get 1GB data for 100"),
+                            title: Text(
+                              controller.allNetwork.value.airtel!.daily![index]
+                                      .title ??
+                                  "",
+                            ),
+                            subtitle: Text(controller.allNetwork.value.airtel!
+                                    .daily![index].subtitle ??
+                                ""),
                             trailing: const Icon(
                               Bootstrap.chevron_right,
                             ),
                           ),
-                          ListTile(
-                            onTap: () {},
-                            title: const Text("1GB - 100"),
-                            subtitle: const Text("Get 1GB data for 100"),
-                            trailing: const Icon(
-                              Bootstrap.chevron_right,
-                            ),
-                          ),
-                          ListTile(
-                            onTap: () {},
-                            title: const Text("1GB - 100"),
-                            subtitle: const Text("Get 1GB data for 100"),
-                            trailing: const Icon(
-                              Bootstrap.chevron_right,
-                            ),
-                          ),
-                          ListTile(
-                            onTap: () {},
-                            title: const Text("1GB - 100"),
-                            subtitle: const Text("Get 1GB data for 100"),
-                            trailing: const Icon(
-                              Bootstrap.chevron_right,
-                            ),
-                          ),
-                          ListTile(
-                            onTap: () {},
-                            title: const Text("1GB - 100"),
-                            subtitle: const Text("Get 1GB data for 100"),
-                            trailing: const Icon(
-                              Bootstrap.chevron_right,
-                            ),
-                          ),
-                          ListTile(
-                            onTap: () {},
-                            title: const Text("1GB - 100"),
-                            subtitle: const Text("Get 1GB data for 100"),
-                            trailing: const Icon(
-                              Bootstrap.chevron_right,
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ),
-                    Container(
-                      color: Colors.green,
+                    SizedBox(
+                      child: ListView(
+                        children: List.generate(
+                          controller.allNetwork.value.airtel!.weekly!.length,
+                          (index) => ListTile(
+                            onTap: () {},
+                            title: Text(
+                              controller.allNetwork.value.airtel!.weekly![index]
+                                      .title ??
+                                  "",
+                            ),
+                            subtitle: Text(controller.allNetwork.value.airtel!
+                                    .weekly![index].subtitle ??
+                                ""),
+                            trailing: const Icon(
+                              Bootstrap.chevron_right,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      child: ListView(
+                        children: List.generate(
+                          controller.allNetwork.value.airtel!.monthly!.length,
+                          (index) => ListTile(
+                            onTap: () {},
+                            title: Text(
+                              controller.allNetwork.value.airtel!
+                                      .monthly![index].title ??
+                                  "",
+                            ),
+                            subtitle: Text(controller.allNetwork.value.airtel!
+                                    .monthly![index].subtitle ??
+                                ""),
+                            trailing: const Icon(
+                              Bootstrap.chevron_right,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
