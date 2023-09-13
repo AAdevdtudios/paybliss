@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:eticon_api/eticon_api.dart';
 import 'package:get/get.dart';
+import 'package:paybliss/app/modules/login/views/login_view.dart';
 
 import 'app/data/const_data.dart';
 import 'app/routes/app_pages.dart';
@@ -13,6 +15,16 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await GetStorage.init();
+
+  await Api.init(
+    urls: [
+      "https://blissbill.onrender.com/api/",
+      "https://9342-105-113-9-59.ngrok-free.app/"
+    ],
+    onAllError: (error) => {
+      if (error.code == 401) {Get.offAll(const LoginView())}
+    },
+  );
 
   runApp(
     ScreenUtilInit(

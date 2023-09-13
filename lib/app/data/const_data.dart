@@ -6,15 +6,15 @@ import 'package:mask_input_formatter/mask_input_formatter.dart';
 MaskInputFormatter phone = MaskInputFormatter(mask: '####-###-####');
 
 class TextStylesItem {
-  TextStyle smallText = GoogleFonts.inter(
+  TextStyle smallText = GoogleFonts.poppins(
     fontSize: 10.sp,
     fontWeight: FontWeight.w200,
   );
-  TextStyle mediumText = GoogleFonts.inter(
-    fontSize: 17.sp,
+  TextStyle mediumText = GoogleFonts.poppins(
+    fontSize: 13.sp,
     fontWeight: FontWeight.w500,
   );
-  TextStyle largeText = GoogleFonts.inter(
+  TextStyle largeText = GoogleFonts.poppins(
     fontSize: 25.sp,
     fontWeight: FontWeight.bold,
   );
@@ -38,7 +38,7 @@ class ThemeModeData {
     ),
     appBarTheme: AppBarTheme(
       color: Colors.black,
-      titleTextStyle: GoogleFonts.inter(
+      titleTextStyle: GoogleFonts.poppins(
         color: Colors.white,
         fontSize: 23.sp,
         fontWeight: FontWeight.bold,
@@ -51,8 +51,8 @@ class ThemeModeData {
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xfff8b858),
         foregroundColor: Colors.black,
-        textStyle: GoogleFonts.inter(
-          fontSize: 20.sp,
+        textStyle: GoogleFonts.poppins(
+          fontSize: 17.sp,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
@@ -74,8 +74,8 @@ class ThemeModeData {
         ),
       ),
       filled: true,
-      hintStyle: GoogleFonts.inter(
-        fontSize: 20.sp,
+      hintStyle: GoogleFonts.poppins(
+        fontSize: 17.sp,
         fontWeight: FontWeight.w500,
         color: Colors.white,
       ),
@@ -93,7 +93,7 @@ class ThemeModeData {
       labelSmall: TextStylesItem().smallText.copyWith(color: Colors.white24),
       labelMedium: TextStylesItem().largeText.copyWith(
             color: const Color(0xffF8B858),
-            fontSize: 17.sp,
+            fontSize: 13.sp,
           ),
     ),
   );
@@ -116,8 +116,8 @@ class ThemeModeData {
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xfff8b858),
         foregroundColor: Colors.black,
-        textStyle: GoogleFonts.inter(
-          fontSize: 20.sp,
+        textStyle: GoogleFonts.poppins(
+          fontSize: 17.sp,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
@@ -134,8 +134,8 @@ class ThemeModeData {
       ),
       border: InputBorder.none,
       filled: true,
-      hintStyle: GoogleFonts.inter(
-        fontSize: 20.sp,
+      hintStyle: GoogleFonts.poppins(
+        fontSize: 17.sp,
         fontWeight: FontWeight.w500,
         color: Colors.black,
       ),
@@ -153,7 +153,7 @@ class ThemeModeData {
       labelSmall: TextStylesItem().smallText.copyWith(color: Colors.white24),
       labelMedium: TextStylesItem().largeText.copyWith(
             color: const Color(0xffF8B858),
-            fontSize: 17.sp,
+            fontSize: 13.sp,
           ),
     ),
   );

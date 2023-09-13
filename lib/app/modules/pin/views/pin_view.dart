@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'package:get/get.dart';
 
@@ -11,6 +12,7 @@ class PinView extends GetView<PinController> {
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(MainPinController());
+    FlutterNativeSplash.remove();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Security Pin'),
@@ -31,7 +33,7 @@ class PinView extends GetView<PinController> {
           Text(
             'Enter your security pin to login',
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 20.sp,
+                  fontSize: 17.sp,
                 ),
           ),
           SizedBox(

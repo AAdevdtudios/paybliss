@@ -7,6 +7,8 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.2
+  flutter_local_notifications: any
+  eticon_api: any
   flutter_screenutil: any
   google_fonts: any
   flutter_svg: any
@@ -15,6 +17,7 @@ dependencies:
   contained_tab_bar_view: any
   flutter_screen_lock: any
   icons_plus: any
+  loading_animation_widget: any
   cool_dropdown: any
   u_credit_card: any
   get_storage: any

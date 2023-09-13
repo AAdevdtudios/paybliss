@@ -32,7 +32,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
             Text(
               'Please enter your email associated with your account',
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: 20.sp,
+                    fontSize: 17.sp,
                   ),
             ),
             SizedBox(
@@ -48,7 +48,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                       keyboardType: TextInputType.emailAddress,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontSize: 20.sp,
+                            fontSize: 17.sp,
                           ),
                       decoration: const InputDecoration(
                         hintText: 'Email',

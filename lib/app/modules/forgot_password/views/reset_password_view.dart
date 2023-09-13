@@ -31,7 +31,7 @@ class ResetPasswordView extends GetView {
               Text(
                 'Set up your new password for your email',
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontSize: 20.sp,
+                      fontSize: 17.sp,
                     ),
               ),
               SizedBox(
@@ -53,7 +53,7 @@ class ResetPasswordView extends GetView {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    fontSize: 20.sp,
+                                    fontSize: 17.sp,
                                   ),
                           validator: (val) =>
                               GetUtils.isLengthLessThan(6, val!.length)
@@ -85,7 +85,7 @@ class ResetPasswordView extends GetView {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    fontSize: 20.sp,
+                                    fontSize: 17.sp,
                                   ),
                           validator: (val) => GetUtils.hasMatch(
                                   controller.confirmPassword.text,

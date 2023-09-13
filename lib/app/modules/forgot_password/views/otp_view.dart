@@ -31,7 +31,7 @@ class OtpView extends GetView<ForgotPasswordController> {
             Text(
               'Enter 4 digit code sent to your email address james@gmail.com',
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: 20.sp,
+                    fontSize: 17.sp,
                   ),
             ),
             SizedBox(

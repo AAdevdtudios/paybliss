@@ -4,6 +4,6 @@ class ApiEndPoints {
 }
 
 class _AuthEndPoints {
-  final String registration = '';
-  final String login = '';
+  final String registration = 'register';
+  final String login = 'login';
 }

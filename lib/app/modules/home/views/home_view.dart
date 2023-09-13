@@ -34,7 +34,7 @@ class HomeView extends GetView<HomeController> {
             size: 30,
           ),
           selectedLabelStyle: TextStylesItem().largeText.copyWith(
-                fontSize: 17.sp,
+                fontSize: 13.sp,
               ),
           onTap: (val) => controller.currentTab.value = val,
           items: List.generate(

@@ -29,7 +29,7 @@ class ConfirmPinView extends GetView {
           Text(
             'Re-enter your Security pin for confirmation',
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 20.sp,
+                  fontSize: 17.sp,
                 ),
           ),
           SizedBox(

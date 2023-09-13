@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'package:get/get.dart';
 import 'package:paybliss/app/modules/pin/controllers/pin_controller.dart';
@@ -8,6 +9,7 @@ class NewPinView extends GetView {
   const NewPinView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
     var controller = Get.put(PinController());
     return Scaffold(
       appBar: AppBar(
@@ -29,7 +31,7 @@ class NewPinView extends GetView {
           Text(
             'We would require the pin to process your transactions',
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 20.sp,
+                  fontSize: 17.sp,
                 ),
           ),
           SizedBox(

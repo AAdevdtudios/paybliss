@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:paybliss/app/data/ApiServices.dart';
 import 'package:paybliss/app/modules/home/views/home_view.dart';
 import 'package:paybliss/main.dart';
 
@@ -36,12 +37,17 @@ class ConfirmPinController extends GetxController {
     }
   }
 
-  confirmPin() {
+  confirmPin() async {
     if (currentTab.value >= 3) {
       currentTab.value += 1;
       if (box.read('confirm_pin').toString() == value.value) {
-        box.writeIfNull('pin_code', value.value);
-        Get.to(const HomeView());
+        var res = await ApiServices().setPin(value.value as int);
+        if (res == true) {
+          Get.to(const HomeView());
+        }
+        Get.defaultDialog(
+          title: "Error",
+        );
       } else {
         Get.snackbar(
           "Error",
