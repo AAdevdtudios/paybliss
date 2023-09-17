@@ -51,9 +51,7 @@ class MainHomeController extends GetxController {
   }
 
   logOut() {
-    box.remove("jwt");
-    box.remove("pin_code");
-    box.remove("refresh");
+    box.erase();
     Get.offAll(const OnboardingView());
   }
 }

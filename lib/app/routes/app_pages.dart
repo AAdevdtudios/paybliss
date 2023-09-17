@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
 import '../../main.dart';
+import '../modules/SplashScreen/bindings/splash_screen_binding.dart';
+import '../modules/SplashScreen/views/splash_screen_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -69,14 +71,20 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PIN,
-      page: () =>
-          box.read('pin_code') == null ? const NewPinView() : const PinView(),
+      page: () => box.read('pin_code') == 0 || box.read('pin_code') == "0"
+          ? const NewPinView()
+          : const PinView(),
       binding: PinBinding(),
     ),
     GetPage(
       name: _Paths.VTU_SCREENS,
       page: () => const VtuScreensView(),
       binding: VtuScreensBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH_SCREEN,
+      page: () => const SplashScreenView(),
+      binding: SplashScreenBinding(),
     ),
   ];
 }

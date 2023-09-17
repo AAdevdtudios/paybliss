@@ -8,6 +8,7 @@ class ConfirmPinController extends GetxController {
   RxList<String> values = ["", "", "", ""].obs;
   RxInt currentTab = 0.obs;
   RxString value = "".obs;
+  RxBool isLoading = false.obs;
 
   removeLast() {
     if (currentTab.value == 0) {
@@ -41,14 +42,15 @@ class ConfirmPinController extends GetxController {
     if (currentTab.value >= 3) {
       currentTab.value += 1;
       if (box.read('confirm_pin').toString() == value.value) {
-        var res = await ApiServices().setPin(value.value as int);
+        isLoading.value = true;
+        var res = await ApiServices().setPin(int.parse(value.value));
         if (res == true) {
+          isLoading.value = false;
           Get.to(const HomeView());
         }
-        Get.defaultDialog(
-          title: "Error",
-        );
+        isLoading.value = false;
       } else {
+        isLoading.value = false;
         Get.snackbar(
           "Error",
           'Pin code does\'nt match your pin',

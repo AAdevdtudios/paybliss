@@ -12,7 +12,7 @@ const String BaseUrl = "https://blissbill.onrender.com/api/";
 Map<String, String> header = {
   "Accept": "application/json",
   "content-type": "application/json",
-  "Authorization": "Bearer ${box.read("jwt")}"
+  "Authorization": ""
 };
 
 class ApiServices {
@@ -35,9 +35,9 @@ class ApiServices {
       if (response.statusCode == 200) {
         box.write("jwt", responseData.data!.jwToken);
         box.write("refresh", responseData.data!.refreshToken);
-        print(box.read('jwt'));
         if (responseData.data!.pin == 0) {
           Get.offAll(const NewPinView());
+          return true;
         }
         box.writeIfNull('pin_code', responseData.data!.pin.toString());
         Get.offAll(const PinView());
@@ -82,6 +82,7 @@ class ApiServices {
 
   Future<bool> setPin(int pin) async {
     var url = Uri.parse("${BaseUrl}auth/set-pin");
+    header["Authorization"] = "Bearer ${box.read("jwt")}";
     Map<String, int> res = {
       "pin": pin,
     };
@@ -93,9 +94,10 @@ class ApiServices {
         encoding: Encoding.getByName("utf-8"),
       );
       var responseData = UserResponse.fromJson(json.decode(response.body));
+      print(responseData.data);
       if (response.statusCode == 200) {
-        box.writeIfNull('pin_code', pin.toString());
-        print("Done");
+        box.write('pin_code', pin.toString());
+        print(box.read("pin_code"));
         return true;
       }
       _ShowDialog("Error", responseData.message.toString(), false);
@@ -110,6 +112,7 @@ class ApiServices {
 
   Future<UserResponse> getUser() async {
     var url = Uri.parse("${BaseUrl}auth/user");
+    header["Authorization"] = "Bearer ${box.read("jwt")}";
     var response = await client.get(url, headers: header);
     var responseData = UserResponse.fromJson(json.decode(response.body));
     return responseData;

@@ -14,6 +14,7 @@ class OnboardingView extends GetView<OnboardingController> {
   @override
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
+    var controller = Get.put(OnboardingController());
     const Color kDarkBlueColor = Color(0xFFEE9105);
     return Scaffold(
       body: OnBoardingSlider(

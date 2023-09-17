@@ -12,6 +12,7 @@ dependencies:
   flutter_screenutil: any
   google_fonts: any
   flutter_svg: any
+  loading_overlay_pro: ^2.1.1
   flutter_onboarding_slider: ^1.0.9
   mask_input_formatter: any
   contained_tab_bar_view: any
@@ -19,6 +20,7 @@ dependencies:
   icons_plus: any
   loading_animation_widget: any
   cool_dropdown: any
+  video_player: any
   u_credit_card: any
   get_storage: any
   http: any
@@ -44,11 +46,9 @@ flutter:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icons/transparentLogo.png"
+  image_path: "assets/icons/logo_img.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
 
 flutter_native_splash:
   color: "#FFFFFF"
-  image: assets/icons/transparentLogo.png
   color_dark: "#000000"
-  image_dark: assets/icons/transparentLogo.png
