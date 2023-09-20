@@ -18,7 +18,7 @@ class ServicesView extends GetView {
           children: [
             Text(
               "Services",
-              style: theme.textTheme.titleMedium!.copyWith(
+              style: theme.textTheme.titleSmall!.copyWith(
                 fontSize: 40.sp,
               ),
             ),

@@ -1,6 +1,7 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:paybliss/app/data/ApiServices.dart';
 import 'package:paybliss/app/data/Models/UserResponse.dart';
 import 'package:paybliss/app/modules/home/controllers/service_controller.dart';
 import 'package:paybliss/app/modules/onboarding/views/onboarding_view.dart';
@@ -38,15 +39,8 @@ class MainHomeController extends GetxController {
   ];
   @override
   void onInit() async {
-    response.value = await ApiServices().getUser();
-    if (response.value.data == null) {
-      Get.defaultDialog(
-        title: "Error",
-        middleText: response.value.message.toString(),
-      );
-    } else {
-      isLoading.value = false;
-    }
+    response.value = UserResponse.fromJson(json.decode(box.read("user")));
+    isLoading.value = false;
     super.onInit();
   }
 

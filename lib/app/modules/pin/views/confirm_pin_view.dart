@@ -17,12 +17,16 @@ class ConfirmPinView extends GetView {
       ),
       body: Obx(
         () => controller.isLoading.value
-            ? const LoadingBouncingLine.circle(
-                borderColor: Colors.cyan,
-                borderSize: 3.0,
-                size: 120.0,
-                backgroundColor: Colors.cyanAccent,
-                duration: Duration(milliseconds: 500),
+            ? const SizedBox(
+                child: Center(
+                  child: LoadingBouncingLine.circle(
+                    borderColor: Colors.cyan,
+                    borderSize: 3.0,
+                    size: 50.0,
+                    backgroundColor: Colors.cyanAccent,
+                    duration: Duration(milliseconds: 500),
+                  ),
+                ),
               )
             : ListView(
                 padding: const EdgeInsets.all(8.0),

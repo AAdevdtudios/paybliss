@@ -46,14 +46,18 @@ class LoginController extends GetxController {
       if (response.statusCode == 200) {
         box.write("jwt", responseData.data!.jwToken);
         box.write("refresh", responseData.data!.refreshToken);
-        if (responseData.data!.pin == 0) {
+        box.write('user', responseData.toJson());
+        print(responseData.data!.pin);
+        if (responseData.data!.pin.toString() == "0") {
           Get.offAll(const NewPinView());
+        } else {
+          box.write('pin_code', responseData.data!.pin.toString());
+          Get.offAll(const PinView());
         }
-        box.writeIfNull('pin_code', responseData.data!.pin.toString());
-        Get.offAll(const PinView());
+      } else {
+        Get.defaultDialog(
+            title: "Error", middleText: responseData.message.toString());
       }
-      Get.defaultDialog(
-          title: "Error", middleText: responseData.message.toString());
     } catch (e) {
       Get.defaultDialog(title: "Error", middleText: e.toString());
     }

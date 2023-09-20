@@ -29,13 +29,13 @@ class OnboardingController extends GetxController {
     OnboardItems(
       image: 'assets/images/crypto.png',
       title: 'Get Crypto',
-      sub: 'With Paybliss you can fund your crypto wallet',
+      sub: 'With Blissbill you can fund your crypto wallet',
     ),
     OnboardItems(
       image: 'assets/images/ticket.png',
       title: 'Book Online',
       sub:
-          'With Paybliss you can book flight ticket locally or internationally',
+          'With Blissbill you can book flight ticket locally or internationally',
     ),
   ];
 }

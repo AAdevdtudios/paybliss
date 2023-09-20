@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:paybliss/app/data/Models/UserResponse.dart';
 import 'package:paybliss/app/modules/home/views/cards_view.dart';
 import 'package:paybliss/app/modules/home/views/main_home_view.dart';
 import 'package:paybliss/app/modules/home/views/profile_view.dart';
 import 'package:paybliss/app/modules/home/views/services_view.dart';
+import 'package:paybliss/main.dart';
 
 class NavigationBarItemClass {
   final String name;
@@ -19,8 +21,18 @@ class NavigationBarItemClass {
 }
 
 class HomeController extends GetxController {
+  var response = UserResponse().obs;
+  RxBool isLoading = true.obs;
+
   RxInt currentTab = 0.obs;
   PageStorageBucket pageStorageBucket = PageStorageBucket();
+
+  @override
+  void onInit() {
+    response.value = UserResponse.fromJson(box.read('user'));
+    isLoading.value = false;
+    super.onInit();
+  }
 
   List<Widget> screens = [
     const MainHomeView(),

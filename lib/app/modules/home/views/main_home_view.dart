@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:paybliss/app/data/const_data.dart';
 
 import '../controllers/home_controller.dart';
@@ -19,9 +20,16 @@ class MainHomeView extends GetView {
     return Obx(
       () => Padding(
         padding: const EdgeInsets.all(11),
-        child: controller.isLoading.value
-            ? const Center(
-                child: Text("Loading"),
+        child: homeController.isLoading.value
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  LoadingAnimationWidget.staggeredDotsWave(
+                    color: theme.primaryColor,
+                    size: 50,
+                  ),
+                ],
               )
             : Column(
                 children: [
@@ -33,8 +41,9 @@ class MainHomeView extends GetView {
                     children: [
                       Row(
                         children: [
-                          const CircleAvatar(
-                            child: Icon(
+                          CircleAvatar(
+                            backgroundColor: theme.primaryColor,
+                            child: const Icon(
                               Bootstrap.person_fill,
                             ),
                           ),
@@ -47,7 +56,7 @@ class MainHomeView extends GetView {
                               children: [
                                 TextSpan(
                                   text:
-                                      "${controller.response.value.data!.firstName}"
+                                      "${homeController.response.value.data!.firstName}"
                                           .capitalizeFirst,
                                   style: theme.textTheme.bodyLarge,
                                 ),
@@ -59,12 +68,11 @@ class MainHomeView extends GetView {
                           ),
                         ],
                       ),
-                      TextButton(
-                        onPressed: () => controller.logOut(),
-                        style: TextButton.styleFrom(
-                          foregroundColor: theme.primaryColor,
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Bootstrap.bell,
                         ),
-                        child: const Text("Log-out"),
                       ),
                     ],
                   ),
@@ -133,8 +141,8 @@ class MainHomeView extends GetView {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              TextSpan(
-                                text: "${controller.response.value.data!.pin}",
+                              const TextSpan(
+                                text: "0.0",
                               ),
                             ],
                           ),

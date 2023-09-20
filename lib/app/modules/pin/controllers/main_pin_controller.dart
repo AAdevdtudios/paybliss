@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:paybliss/app/data/ApiServices.dart';
 import 'package:paybliss/app/modules/home/views/home_view.dart';
-import 'package:paybliss/main.dart';
 
 class MainPinController extends GetxController {
   RxList<String> values = ["", "", "", ""].obs;
@@ -36,17 +35,12 @@ class MainPinController extends GetxController {
     }
   }
 
-  confirmPin() {
+  confirmPin() async {
     if (currentTab.value >= 3) {
       currentTab.value += 1;
-      if (box.read('pin_code').toString() == value.value) {
-        Get.to(const HomeView());
-      } else {
-        Get.snackbar(
-          "Error",
-          'Pin code does\'nt match your pin',
-          backgroundColor: Colors.red[300],
-        );
+      bool loginAuth = await ApiServices().loginPin(int.parse(value.value));
+      if (loginAuth == true) {
+        Get.offAll(const HomeView());
       }
     } else {
       currentTab.value += 1;

@@ -5,7 +5,6 @@ import 'package:paybliss/app/data/Models/UserResponse.dart';
 import "package:http/http.dart" as http;
 import 'package:paybliss/app/modules/login/views/login_view.dart';
 import 'package:paybliss/app/modules/pin/views/new_pin_view.dart';
-import 'package:paybliss/app/modules/pin/views/pin_view.dart';
 import 'package:paybliss/main.dart';
 
 const String BaseUrl = "https://blissbill.onrender.com/api/";
@@ -18,7 +17,7 @@ Map<String, String> header = {
 class ApiServices {
   var client = http.Client();
 
-  Future<bool> loginUser(String email, String password) async {
+  Future<bool> register_loginUser(String email, String password) async {
     var url = Uri.parse("${BaseUrl}auth/login");
     Map<String, String> res = {
       "email": email,
@@ -35,16 +34,12 @@ class ApiServices {
       if (response.statusCode == 200) {
         box.write("jwt", responseData.data!.jwToken);
         box.write("refresh", responseData.data!.refreshToken);
-        if (responseData.data!.pin == 0) {
-          Get.offAll(const NewPinView());
-          return true;
-        }
-        box.writeIfNull('pin_code', responseData.data!.pin.toString());
-        Get.offAll(const PinView());
+        box.write("user", jsonEncode(response.body));
+        print(box.read("user"));
         return true;
       }
       _ShowDialog("Error", responseData.message.toString(), false);
-      return true;
+      return false;
     } catch (e) {
       return false;
     }
@@ -62,9 +57,23 @@ class ApiServices {
       );
       var responseData = UserResponse.fromJson(json.decode(response.body));
       if (response.statusCode == 200) {
-        //await loginUser(user["email"], user["password"]);
-        Get.to(const LoginView());
-        return true;
+        bool isLoggedIn =
+            await register_loginUser(user["email"], user["password"]);
+        if (isLoggedIn) {
+          box.write('user', responseData.toJson());
+          Get.offAll(const NewPinView());
+          return true;
+        } else {
+          Get.offAll(const LoginView());
+          return true;
+        }
+      }
+      if (responseData.message.toString() == "User already exist") {
+        Get.defaultDialog(
+          title: "Error",
+          middleText: responseData.message.toString(),
+        );
+        Get.off(const LoginView());
       }
       Get.defaultDialog(
         title: "Error",
@@ -97,6 +106,7 @@ class ApiServices {
       print(responseData.data);
       if (response.statusCode == 200) {
         box.write('pin_code', pin.toString());
+        box.write('user', responseData.toJson());
         print(box.read("pin_code"));
         return true;
       }
@@ -108,6 +118,30 @@ class ApiServices {
       );
     }
     return true;
+  }
+
+  Future<bool> loginPin(int pin) async {
+    var url = Uri.parse("${BaseUrl}auth/getPin?pin=$pin");
+    header["Authorization"] = "Bearer ${box.read("jwt")}";
+    try {
+      var response = await client.get(
+        url,
+        headers: header,
+      );
+      var responseData = UserResponse.fromJson(json.decode(response.body));
+      if (response.statusCode == 200) {
+        box.write('user', responseData.toJson());
+        return true;
+      }
+      _ShowDialog("Error", responseData.message.toString(), false);
+      return false;
+    } catch (e) {
+      Get.defaultDialog(
+        title: "Network",
+        middleText: "Un-able to access the internet",
+      );
+      return false;
+    }
   }
 
   Future<UserResponse> getUser() async {

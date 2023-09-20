@@ -60,8 +60,8 @@ class SignupView extends GetView<SignupController> {
                           ),
                         ),
                         validator: (value) =>
-                            GetUtils.isLengthLessThan(value, 6)
-                                ? "Full name too short"
+                            GetUtils.isLengthLessThan(value, 3)
+                                ? "Firstname too short"
                                 : null,
                       ),
                     ),
@@ -84,8 +84,8 @@ class SignupView extends GetView<SignupController> {
                           ),
                         ),
                         validator: (value) =>
-                            GetUtils.isLengthLessThan(value, 6)
-                                ? "Full name too short"
+                            GetUtils.isLengthLessThan(value, 3)
+                                ? "Lastname too short"
                                 : null,
                       ),
                     ),

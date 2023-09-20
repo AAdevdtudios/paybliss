@@ -85,7 +85,7 @@ class CardsView extends GetView {
                         ),
                       ),
                       cardProviderLogo:
-                          Image.asset("assets/icons/transparentLogo.png"),
+                          Image.asset("assets/icons/logo_img.png"),
                       cardHolderFullName: 'John Doe',
                       cardNumber: '1234567812345678',
                       validThru: '10/24',
