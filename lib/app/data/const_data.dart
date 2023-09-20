@@ -85,6 +85,7 @@ class ThemeModeData {
       bodyMedium: TextStylesItem().mediumText.copyWith(color: Colors.white),
       bodyLarge: TextStylesItem().largeText.copyWith(color: Colors.white),
       titleSmall: TextStylesItem().mediumText.copyWith(color: Colors.white),
+      titleMedium: TextStylesItem().mediumText.copyWith(color: Colors.white),
       titleLarge: TextStylesItem().largeText.copyWith(color: Colors.white),
       labelLarge: TextStylesItem().largeText.copyWith(
             color: const Color(0xffF8B858),
@@ -145,6 +146,7 @@ class ThemeModeData {
       bodyMedium: TextStylesItem().mediumText.copyWith(color: Colors.black38),
       bodyLarge: TextStylesItem().largeText.copyWith(color: Colors.black),
       titleSmall: TextStylesItem().mediumText.copyWith(color: Colors.black),
+      titleMedium: TextStylesItem().mediumText.copyWith(color: Colors.black),
       titleLarge: TextStylesItem().largeText.copyWith(color: Colors.black),
       labelLarge: TextStylesItem().largeText.copyWith(
             color: const Color(0xffF8B858),

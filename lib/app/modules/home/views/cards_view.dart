@@ -28,7 +28,7 @@ class CardsView extends GetView {
                 ),
               ),
               Text(
-                'Paybliss virtual card for your online services',
+                'Blissbill virtual card for your online services',
                 style: theme.textTheme.bodyMedium!.copyWith(
                   fontSize: 14.sp,
                 ),

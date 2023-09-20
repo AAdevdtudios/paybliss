@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:paybliss/app/modules/home/controllers/home_controller.dart';
 import 'package:paybliss/app/modules/home/controllers/profile_controller.dart';
 
 class ProfileView extends GetView {
@@ -10,11 +11,12 @@ class ProfileView extends GetView {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    var homeController = Get.put(HomeController());
     var controller = Get.put(ProfileController());
     return Column(
       children: [
         SizedBox(
-          height: 20.h,
+          height: 30.h,
         ),
         CircleAvatar(
           backgroundColor: theme.primaryColor,
@@ -23,14 +25,27 @@ class ProfileView extends GetView {
             Bootstrap.person_fill,
           ),
         ),
-        const Text(
-          "Full name",
+        SizedBox(
+          height: 20.h,
+        ),
+        Text(
+          "${homeController.response.value.data!.firstName} ${homeController.response.value.data!.lastName}",
+          style: theme.textTheme.displayLarge!.copyWith(
+            fontSize: 25.sp,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        SizedBox(
+          height: 20.h,
         ),
         ElevatedButton(
           onPressed: () {},
           child: const Text(
             "Edit Profile",
           ),
+        ),
+        const SizedBox(
+          height: 20,
         ),
         ListTile(
           onTap: () {},
@@ -102,7 +117,7 @@ class ProfileView extends GetView {
           ),
         ),
         ListTile(
-          onTap: () {},
+          onTap: () => controller.logout(),
           leading: const Icon(
             Bootstrap.door_open,
           ),
@@ -114,7 +129,7 @@ class ProfileView extends GetView {
           ),
         ),
         ListTile(
-          onTap: () => controller.logout(),
+          onTap: () => {},
           leading: const Icon(
             Bootstrap.basket,
           ),

@@ -6,6 +6,7 @@ class MainPinController extends GetxController {
   RxList<String> values = ["", "", "", ""].obs;
   RxInt currentTab = 0.obs;
   RxString value = "".obs;
+  RxBool isLoading = false.obs;
 
   removeLast() {
     if (currentTab.value == 0) {
@@ -37,11 +38,15 @@ class MainPinController extends GetxController {
 
   confirmPin() async {
     if (currentTab.value >= 3) {
+      isLoading.value = true;
       currentTab.value += 1;
       bool loginAuth = await ApiServices().loginPin(int.parse(value.value));
+      print(loginAuth);
       if (loginAuth == true) {
         Get.offAll(const HomeView());
+        isLoading.value = false;
       }
+      isLoading.value = false;
     } else {
       currentTab.value += 1;
     }

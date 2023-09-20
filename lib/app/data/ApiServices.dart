@@ -131,10 +131,12 @@ class ApiServices {
       var responseData = UserResponse.fromJson(json.decode(response.body));
       if (response.statusCode == 200) {
         box.write('user', responseData.toJson());
+        print(response.statusCode);
         return true;
+      } else {
+        _ShowDialog("Error", responseData.message.toString(), true);
+        return false;
       }
-      _ShowDialog("Error", responseData.message.toString(), false);
-      return false;
     } catch (e) {
       Get.defaultDialog(
         title: "Network",
@@ -149,6 +151,11 @@ class ApiServices {
     header["Authorization"] = "Bearer ${box.read("jwt")}";
     var response = await client.get(url, headers: header);
     var responseData = UserResponse.fromJson(json.decode(response.body));
+    if (response.statusCode == 200) {
+      box.write('user', responseData.toJson());
+      return responseData;
+    }
+    _ShowDialog("Error", responseData.message.toString(), true);
     return responseData;
   }
 }
@@ -157,6 +164,5 @@ _ShowDialog(String type, String message, bool disable) {
   Get.defaultDialog(
     title: type,
     middleText: message,
-    barrierDismissible: disable,
   );
 }

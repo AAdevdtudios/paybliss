@@ -18,12 +18,12 @@ class ServicesView extends GetView {
           children: [
             Text(
               "Services",
-              style: theme.textTheme.titleSmall!.copyWith(
+              style: theme.textTheme.titleMedium!.copyWith(
                 fontSize: 40.sp,
               ),
             ),
             Text(
-              'What bills would you like to pay with Paybliss',
+              'What bills would you like to pay with Blissbill',
               style: theme.textTheme.bodyMedium!.copyWith(
                 fontSize: 14.sp,
               ),
