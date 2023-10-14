@@ -6,6 +6,12 @@ import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:paybliss/app/modules/home/controllers/home_controller.dart';
 import 'package:paybliss/app/modules/home/controllers/profile_controller.dart';
+import 'package:paybliss/app/modules/home/views/account_security_view.dart';
+import 'package:paybliss/app/modules/home/views/help_view.dart';
+import 'package:paybliss/app/modules/home/views/refer_view.dart';
+import 'package:paybliss/main.dart';
+
+import 'edit_profile_view.dart';
 
 class ProfileView extends GetView {
   const ProfileView({Key? key}) : super(key: key);
@@ -32,7 +38,8 @@ class ProfileView extends GetView {
               height: 20.h,
             ),
             Text(
-              "${homeController.response.value.data!.firstName} ${homeController.response.value.data!.lastName}",
+              "${box.read("firstname")} ${box.read("lastname")}".capitalize ??
+                  "",
               style: theme.textTheme.bodyLarge!,
             ),
           ].animate().fadeIn(),
@@ -43,7 +50,7 @@ class ProfileView extends GetView {
               height: 20,
             ),
             ListTile(
-              onTap: () {},
+              onTap: () => Get.to(const EditProfileView()),
               leading: const Icon(
                 Bootstrap.person_fill,
               ),
@@ -57,23 +64,23 @@ class ProfileView extends GetView {
                 "Change password and update profile",
               ),
             ),
-            // ListTile(
-            //   onTap: () {},
-            //   leading: const Icon(
-            //     Bootstrap.gift,
-            //   ),
-            //   trailing: const Icon(
-            //     Bootstrap.chevron_right,
-            //   ),
-            //   title: const Text(
-            //     "Refer & Earn",
-            //   ),
-            //   subtitle: const Text(
-            //     "Invite your friends and get a bonus",
-            //   ),
-            // ),
             ListTile(
-              onTap: () {},
+              onTap: () => Get.to(const ReferView()),
+              leading: const Icon(
+                Bootstrap.gift,
+              ),
+              trailing: const Icon(
+                Bootstrap.chevron_right,
+              ),
+              title: const Text(
+                "Refer & Earn",
+              ),
+              subtitle: const Text(
+                "Invite your friends and get a bonus",
+              ),
+            ),
+            ListTile(
+              onTap: () => Get.to(const HelpView()),
               leading: const Icon(
                 Bootstrap.chat_dots,
               ),
@@ -102,20 +109,20 @@ class ProfileView extends GetView {
             //     "See exchange rates & fees",
             //   ),
             // ),
+            // ListTile(
+            //   onTap: () {},
+            //   leading: const Icon(
+            //     Bootstrap.stars,
+            //   ),
+            //   trailing: const Icon(
+            //     Bootstrap.chevron_right,
+            //   ),
+            //   title: const Text(
+            //     "Beneficiaries",
+            //   ),
+            // ),
             ListTile(
-              onTap: () {},
-              leading: const Icon(
-                Bootstrap.stars,
-              ),
-              trailing: const Icon(
-                Bootstrap.chevron_right,
-              ),
-              title: const Text(
-                "Beneficiaries",
-              ),
-            ),
-            ListTile(
-              onTap: () {},
+              onTap: () => Get.to(const AccountSecurityView()),
               leading: const Icon(
                 Bootstrap.safe,
               ),

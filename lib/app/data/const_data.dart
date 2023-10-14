@@ -93,6 +93,7 @@ class ThemeModeData {
       bodySmall: TextStylesItem().smallText.copyWith(color: Colors.white),
       bodyMedium: TextStylesItem().mediumText.copyWith(color: Colors.white),
       bodyLarge: TextStylesItem().largeText.copyWith(color: Colors.white),
+      headlineMedium: TextStylesItem().largeText.copyWith(color: Colors.white),
       titleSmall: TextStylesItem().mediumText.copyWith(color: Colors.white),
       titleMedium: TextStylesItem().mediumText.copyWith(color: Colors.white),
       titleLarge: TextStylesItem().largeText.copyWith(color: Colors.white),

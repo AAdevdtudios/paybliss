@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:paybliss/app/data/const_data.dart';
+import 'package:paybliss/main.dart';
 
 import '../controllers/home_controller.dart';
 import '../controllers/main_home_controller.dart';
@@ -55,9 +56,8 @@ class MainHomeView extends GetView {
                               text: "Welcome \n",
                               children: [
                                 TextSpan(
-                                  text:
-                                      "${homeController.response.value.data!.firstName}"
-                                          .capitalizeFirst,
+                                  text: "${box.read("firstname")}"
+                                      .capitalizeFirst,
                                   style: theme.textTheme.bodyLarge,
                                 ),
                               ],

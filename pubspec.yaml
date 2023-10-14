@@ -22,6 +22,7 @@ dependencies:
   searchable_paginated_dropdown: any
   loadmore: any
   list_load_more: any
+  url_launcher: any
   lazy_load_refresh_indicator: any
   flutter_screen_lock: any
   icons_plus: any

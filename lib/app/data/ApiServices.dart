@@ -35,10 +35,17 @@ class ApiServices {
       );
       var responseData = UserResponse.fromJson(json.decode(response.body));
       if (response.statusCode == 200) {
-        box.write("jwt", responseData.data!.jwToken);
-        box.write("refresh", responseData.data!.refreshToken);
-        box.write("user", jsonEncode(response.body));
-        print(box.read("user"));
+        storesInfo(
+          {
+            "email": responseData.data!.email.toString(),
+            "firstname": responseData.data!.firstName.toString(),
+            "lastname": responseData.data!.lastName.toString(),
+            "pin_code": responseData.data!.pin.toString(),
+            "referralCode": responseData.data!.referralsCode.toString(),
+            "jwt": responseData.data!.jwToken.toString(),
+            "refresh": responseData.data!.refreshToken.toString()
+          },
+        );
         return true;
       }
       _ShowDialog("Error", responseData.message.toString(), false);
@@ -64,7 +71,17 @@ class ApiServices {
         bool isLoggedIn =
             await register_loginUser(user["email"], user["password"]);
         if (isLoggedIn) {
-          box.write('user', responseData.toJson());
+          storesInfo(
+            {
+              "email": responseData.data!.email.toString(),
+              "firstname": responseData.data!.firstName.toString(),
+              "lastname": responseData.data!.lastName.toString(),
+              "pin_code": responseData.data!.pin.toString(),
+              "referralCode": responseData.data!.referralsCode.toString(),
+              "jwt": responseData.data!.jwToken.toString(),
+              "refresh": responseData.data!.refreshToken.toString()
+            },
+          );
           Get.offAll(const NewPinView());
           return true;
         } else {
@@ -109,9 +126,17 @@ class ApiServices {
       var responseData = UserResponse.fromJson(json.decode(response.body));
       print(responseData.data);
       if (response.statusCode == 200) {
-        box.write('pin_code', pin.toString());
-        box.write('user', responseData.toJson());
-        print(box.read("pin_code"));
+        storesInfo(
+          {
+            "email": responseData.data!.email.toString(),
+            "firstname": responseData.data!.firstName.toString(),
+            "lastname": responseData.data!.lastName.toString(),
+            "pin_code": responseData.data!.pin.toString(),
+            "referralCode": responseData.data!.referralsCode.toString(),
+            "jwt": responseData.data!.jwToken.toString(),
+            "refresh": responseData.data!.refreshToken.toString()
+          },
+        );
         return true;
       }
       _ShowDialog("Error", responseData.message.toString(), false);
@@ -127,7 +152,6 @@ class ApiServices {
   Future<bool> loginPin(int pin) async {
     var url = Uri.parse("${BaseUrl}auth/getPin?pin=$pin");
     header["Authorization"] = "Bearer ${box.read("jwt")}";
-    print(box.read('refresh'));
     try {
       var response = await client.get(
         url,
@@ -136,6 +160,18 @@ class ApiServices {
       var responseData = UserResponse.fromJson(json.decode(response.body));
       if (response.statusCode == 200) {
         box.write('user', responseData.toJson());
+        storesInfo(
+          {
+            "email": responseData.data!.email.toString(),
+            "firstname": responseData.data!.firstName.toString(),
+            "lastname": responseData.data!.lastName.toString(),
+            "pin_code": responseData.data!.pin.toString(),
+            "referralCode": responseData.data!.referralsCode.toString(),
+            "jwt": responseData.data!.jwToken.toString(),
+            "refresh": responseData.data!.refreshToken.toString()
+          },
+        );
+        print(box.read("jwt"));
         Get.offAll(const HomeView());
         return true;
       } else if (response.statusCode == 401) {
@@ -151,9 +187,12 @@ class ApiServices {
         title: "Network",
         middleText: "Un-able to access the internet",
       );
-      print(e.toString());
       return false;
     }
+  }
+
+  storesInfo(Map<String, String> data) {
+    data.forEach((key, value) => box.write(key, value));
   }
 }
 
