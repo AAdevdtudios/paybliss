@@ -97,7 +97,7 @@ class AirtimeVtuView extends GetView {
                 children: List.generate(
                   6,
                   (index) => InkWell(
-                    onTap: () => {},
+                    onTap: () => controller.amount.text = quick_pick[index],
                     radius: 10,
                     child: Container(
                       height: 80.h,

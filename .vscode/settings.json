@@ -1,10 +1,13 @@
 {
   "cSpell.words": [
     "Autovalidate",
+    "Dstv",
+    "Epin",
     "Firstname",
     "Lastname",
     "Paybliss",
-    "Signup"
+    "Signup",
+    "Spectranet"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll": true

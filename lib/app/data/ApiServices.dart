@@ -4,8 +4,11 @@ import 'package:get/get.dart';
 import 'package:paybliss/app/data/Models/UserResponse.dart';
 import "package:http/http.dart" as http;
 import 'package:paybliss/app/modules/login/views/login_view.dart';
+import 'package:paybliss/app/modules/onboarding/views/onboarding_view.dart';
 import 'package:paybliss/app/modules/pin/views/new_pin_view.dart';
 import 'package:paybliss/main.dart';
+
+import '../modules/home/views/home_view.dart';
 
 const String BaseUrl = "https://blissbill.onrender.com/api/";
 Map<String, String> header = {
@@ -55,6 +58,7 @@ class ApiServices {
         headers: header,
         encoding: Encoding.getByName("utf-8"),
       );
+      print(response);
       var responseData = UserResponse.fromJson(json.decode(response.body));
       if (response.statusCode == 200) {
         bool isLoggedIn =
@@ -123,6 +127,7 @@ class ApiServices {
   Future<bool> loginPin(int pin) async {
     var url = Uri.parse("${BaseUrl}auth/getPin?pin=$pin");
     header["Authorization"] = "Bearer ${box.read("jwt")}";
+    print(box.read('refresh'));
     try {
       var response = await client.get(
         url,
@@ -131,8 +136,12 @@ class ApiServices {
       var responseData = UserResponse.fromJson(json.decode(response.body));
       if (response.statusCode == 200) {
         box.write('user', responseData.toJson());
-        print(response.statusCode);
+        Get.offAll(const HomeView());
         return true;
+      } else if (response.statusCode == 401) {
+        box.erase();
+        Get.offAll(const OnboardingView());
+        return false;
       } else {
         _ShowDialog("Error", responseData.message.toString(), true);
         return false;
@@ -142,21 +151,9 @@ class ApiServices {
         title: "Network",
         middleText: "Un-able to access the internet",
       );
+      print(e.toString());
       return false;
     }
-  }
-
-  Future<UserResponse> getUser() async {
-    var url = Uri.parse("${BaseUrl}auth/user");
-    header["Authorization"] = "Bearer ${box.read("jwt")}";
-    var response = await client.get(url, headers: header);
-    var responseData = UserResponse.fromJson(json.decode(response.body));
-    if (response.statusCode == 200) {
-      box.write('user', responseData.toJson());
-      return responseData;
-    }
-    _ShowDialog("Error", responseData.message.toString(), true);
-    return responseData;
   }
 }
 

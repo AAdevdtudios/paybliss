@@ -1,4 +1,3 @@
-import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:cool_dropdown/cool_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,6 +24,12 @@ class DataVtuView extends GetView {
             physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.all(8),
             children: [
+              const Text(
+                "Phone number:",
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
               TextFormField(
                 controller: controller.phoneNumber,
                 keyboardType: TextInputType.number,
@@ -84,83 +89,45 @@ class DataVtuView extends GetView {
                 ),
               ),
               SizedBox(
-                height: 30.h,
+                height: 20.h,
               ),
+              const Text("Data bundle:"),
               SizedBox(
-                width: double.infinity,
-                height: 700.h,
-                child: ContainedTabBarView(
-                  tabs: List.generate(
-                    controller.variant.length,
-                    (index) => Text(
-                      controller.variant[index],
+                height: 10.h,
+              ),
+              DropdownButtonFormField(
+                value: controller.selectedVal.value,
+                alignment: Alignment.bottomCenter,
+                hint: const Text("Select bundle"),
+                onChanged: (newValue) =>
+                    controller.selectedVal.value = newValue as String,
+                items: List.generate(
+                  controller.data.length,
+                  (index) => DropdownMenuItem(
+                    value: controller.data[index],
+                    child: Text(
+                      controller.data[index],
                     ),
                   ),
-                  views: [
-                    SizedBox(
-                      child: ListView(
-                        children: List.generate(
-                          controller.allNetwork.value.mTN!.daily!.length,
-                          (index) => ListTile(
-                            onTap: () {},
-                            title: Text(
-                              controller.allNetwork.value.airtel!.daily![index]
-                                      .title ??
-                                  "",
-                            ),
-                            subtitle: Text(controller.allNetwork.value.airtel!
-                                    .daily![index].subtitle ??
-                                ""),
-                            trailing: const Icon(
-                              Bootstrap.chevron_right,
-                            ),
-                          ),
-                        ),
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              SizedBox(
+                height: 70.h,
+                child: ElevatedButton(
+                  onPressed: () => {},
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                        20,
                       ),
                     ),
-                    SizedBox(
-                      child: ListView(
-                        children: List.generate(
-                          controller.allNetwork.value.airtel!.weekly!.length,
-                          (index) => ListTile(
-                            onTap: () {},
-                            title: Text(
-                              controller.allNetwork.value.airtel!.weekly![index]
-                                      .title ??
-                                  "",
-                            ),
-                            subtitle: Text(controller.allNetwork.value.airtel!
-                                    .weekly![index].subtitle ??
-                                ""),
-                            trailing: const Icon(
-                              Bootstrap.chevron_right,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      child: ListView(
-                        children: List.generate(
-                          controller.allNetwork.value.airtel!.monthly!.length,
-                          (index) => ListTile(
-                            onTap: () {},
-                            title: Text(
-                              controller.allNetwork.value.airtel!
-                                      .monthly![index].title ??
-                                  "",
-                            ),
-                            subtitle: Text(controller.allNetwork.value.airtel!
-                                    .monthly![index].subtitle ??
-                                ""),
-                            trailing: const Icon(
-                              Bootstrap.chevron_right,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
+                  child: const Text(
+                    "Validate",
+                  ),
                 ),
               ),
             ],

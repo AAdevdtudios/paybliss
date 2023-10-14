@@ -57,28 +57,48 @@ class CableVtuView extends GetView {
               SizedBox(
                 height: 30.h,
               ),
-              const Text("Bouquet"),
-              SizedBox(
-                height: 10.h,
-              ),
-              DropdownButtonFormField(
-                value: controller.selectedValue.value,
-                alignment: Alignment.bottomCenter,
-                onChanged: (newValue) =>
-                    controller.selectedValue.value = newValue as String,
-                items: List.generate(
-                  controller.cables.length,
-                  (index) => DropdownMenuItem(
-                    value: controller.cables[index],
-                    child: Text(
-                      controller.cables[index],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 50.h,
-              ),
+              controller.isValid.value
+                  ? Column(
+                      children: [
+                        const Text("Account Name"),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.text,
+                          enabled: false,
+                          decoration: const InputDecoration(
+                            hintText: "Account Name",
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30.h,
+                        ),
+                        const Text("Bouquet"),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        DropdownButtonFormField(
+                          value: controller.selectedValue.value,
+                          alignment: Alignment.bottomCenter,
+                          onChanged: (newValue) => controller
+                              .selectedValue.value = newValue as String,
+                          items: List.generate(
+                            controller.cables.length,
+                            (index) => DropdownMenuItem(
+                              value: controller.cables[index],
+                              child: Text(
+                                controller.cables[index],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 50.h,
+                        ),
+                      ],
+                    )
+                  : const SizedBox(),
               SizedBox(
                 height: 70.h,
                 child: ElevatedButton(
@@ -88,7 +108,7 @@ class CableVtuView extends GetView {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: const Text("Pay"),
+                  child: Text(controller.isValid.value ? "Pay" : "Validate"),
                 ),
               ),
             ],

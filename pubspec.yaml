@@ -13,9 +13,16 @@ dependencies:
   google_fonts: any
   flutter_svg: any
   loading_overlay_pro: ^2.1.1
+  awesome_notifications: any
   flutter_onboarding_slider: ^1.0.9
   mask_input_formatter: any
   contained_tab_bar_view: any
+  intl: any
+  flutter_animate: any
+  searchable_paginated_dropdown: any
+  loadmore: any
+  list_load_more: any
+  lazy_load_refresh_indicator: any
   flutter_screen_lock: any
   icons_plus: any
   loading_animation_widget: any

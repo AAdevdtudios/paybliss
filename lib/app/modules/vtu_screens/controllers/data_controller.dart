@@ -18,7 +18,8 @@ class DataController extends GetxController {
   RxBool isValid = false.obs;
   List<CoolDropdownItem<DropIcon>> pokemonDropdownItems = [];
   Rx<Networks> allNetwork = Networks().obs;
-  List<String> variant = ["Daily", "Weekly", "Monthly"];
+  RxList<String> data = ["GOTV", "DSTv", "Startimes"].obs;
+  RxString selectedVal = "GOTV".obs;
 
   @override
   void onReady() {

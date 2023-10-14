@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
@@ -15,130 +16,141 @@ class ProfileView extends GetView {
     var controller = Get.put(ProfileController());
     return Column(
       children: [
-        SizedBox(
-          height: 30.h,
+        Column(
+          children: [
+            SizedBox(
+              height: 30.h,
+            ),
+            CircleAvatar(
+              backgroundColor: theme.primaryColor,
+              radius: 40.r,
+              child: const Icon(
+                Bootstrap.person_fill,
+              ),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            Text(
+              "${homeController.response.value.data!.firstName} ${homeController.response.value.data!.lastName}",
+              style: theme.textTheme.bodyLarge!,
+            ),
+          ].animate().fadeIn(),
         ),
-        CircleAvatar(
-          backgroundColor: theme.primaryColor,
-          radius: 40.r,
-          child: const Icon(
-            Bootstrap.person_fill,
-          ),
-        ),
-        SizedBox(
-          height: 20.h,
-        ),
-        Text(
-          "${homeController.response.value.data!.firstName} ${homeController.response.value.data!.lastName}",
-          style: theme.textTheme.displayLarge!.copyWith(
-            fontSize: 25.sp,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        SizedBox(
-          height: 20.h,
-        ),
-        ElevatedButton(
-          onPressed: () {},
-          child: const Text(
-            "Edit Profile",
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        ListTile(
-          onTap: () {},
-          leading: const Icon(
-            Bootstrap.gift,
-          ),
-          trailing: const Icon(
-            Bootstrap.chevron_right,
-          ),
-          title: const Text(
-            "Refer & Earn",
-          ),
-          subtitle: const Text(
-            "Invite your friends and get a bonus",
-          ),
-        ),
-        ListTile(
-          onTap: () {},
-          leading: const Icon(
-            Bootstrap.chat_dots,
-          ),
-          trailing: const Icon(
-            Bootstrap.chevron_right,
-          ),
-          title: const Text(
-            "Help Center",
-          ),
-          subtitle: const Text(
-            "Have an issue? Speak to a team",
-          ),
-        ),
-        ListTile(
-          onTap: () {},
-          leading: const Icon(
-            Bootstrap.coin,
-          ),
-          trailing: const Icon(
-            Bootstrap.chevron_right,
-          ),
-          title: const Text(
-            "Rate & fees",
-          ),
-          subtitle: const Text(
-            "See exchange rates & fees",
-          ),
-        ),
-        ListTile(
-          onTap: () {},
-          leading: const Icon(
-            Bootstrap.stars,
-          ),
-          trailing: const Icon(
-            Bootstrap.chevron_right,
-          ),
-          title: const Text(
-            "Beneficiaries",
-          ),
-        ),
-        ListTile(
-          onTap: () {},
-          leading: const Icon(
-            Bootstrap.safe,
-          ),
-          trailing: const Icon(
-            Bootstrap.chevron_right,
-          ),
-          title: const Text(
-            "Account Security",
-          ),
-        ),
-        ListTile(
-          onTap: () => controller.logout(),
-          leading: const Icon(
-            Bootstrap.door_open,
-          ),
-          trailing: const Icon(
-            Bootstrap.chevron_right,
-          ),
-          title: const Text(
-            "Logout",
-          ),
-        ),
-        ListTile(
-          onTap: () => {},
-          leading: const Icon(
-            Bootstrap.basket,
-          ),
-          trailing: const Icon(
-            Bootstrap.chevron_right,
-          ),
-          title: const Text(
-            "Delete Account",
-          ),
+        Column(
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Bootstrap.person_fill,
+              ),
+              trailing: const Icon(
+                Bootstrap.chevron_right,
+              ),
+              title: const Text(
+                "Edit Profile",
+              ),
+              subtitle: const Text(
+                "Change password and update profile",
+              ),
+            ),
+            // ListTile(
+            //   onTap: () {},
+            //   leading: const Icon(
+            //     Bootstrap.gift,
+            //   ),
+            //   trailing: const Icon(
+            //     Bootstrap.chevron_right,
+            //   ),
+            //   title: const Text(
+            //     "Refer & Earn",
+            //   ),
+            //   subtitle: const Text(
+            //     "Invite your friends and get a bonus",
+            //   ),
+            // ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Bootstrap.chat_dots,
+              ),
+              trailing: const Icon(
+                Bootstrap.chevron_right,
+              ),
+              title: const Text(
+                "Help Center",
+              ),
+              subtitle: const Text(
+                "Have an issue? Speak to a team",
+              ),
+            ),
+            // ListTile(
+            //   onTap: () {},
+            //   leading: const Icon(
+            //     Bootstrap.coin,
+            //   ),
+            //   trailing: const Icon(
+            //     Bootstrap.chevron_right,
+            //   ),
+            //   title: const Text(
+            //     "Rate & fees",
+            //   ),
+            //   subtitle: const Text(
+            //     "See exchange rates & fees",
+            //   ),
+            // ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Bootstrap.stars,
+              ),
+              trailing: const Icon(
+                Bootstrap.chevron_right,
+              ),
+              title: const Text(
+                "Beneficiaries",
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Bootstrap.safe,
+              ),
+              trailing: const Icon(
+                Bootstrap.chevron_right,
+              ),
+              title: const Text(
+                "Account Security",
+              ),
+            ),
+            ListTile(
+              onTap: () => controller.logout(),
+              leading: const Icon(
+                Bootstrap.door_open,
+              ),
+              trailing: const Icon(
+                Bootstrap.chevron_right,
+              ),
+              title: const Text(
+                "Logout",
+              ),
+            ),
+            ListTile(
+              onTap: () => {},
+              leading: const Icon(
+                Bootstrap.basket,
+              ),
+              trailing: const Icon(
+                Bootstrap.chevron_right,
+              ),
+              title: const Text(
+                "Delete Account",
+              ),
+            ),
+          ].animate(interval: 400.ms).fade().slideY(duration: 200.ms),
         ),
       ],
     );

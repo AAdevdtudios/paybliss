@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:paybliss/app/data/ApiServices.dart';
-import 'package:paybliss/app/modules/home/views/home_view.dart';
 
 class MainPinController extends GetxController {
   RxList<String> values = ["", "", "", ""].obs;
@@ -40,13 +39,13 @@ class MainPinController extends GetxController {
     if (currentTab.value >= 3) {
       isLoading.value = true;
       currentTab.value += 1;
-      bool loginAuth = await ApiServices().loginPin(int.parse(value.value));
-      print(loginAuth);
-      if (loginAuth == true) {
-        Get.offAll(const HomeView());
-        isLoading.value = false;
-      }
+      await ApiServices().loginPin(int.parse(value.value));
       isLoading.value = false;
+      // print(loginAuth);
+      // if (loginAuth == true) {
+      //   isLoading.value = false;
+      // }
+      // isLoading.value = false;
     } else {
       currentTab.value += 1;
     }

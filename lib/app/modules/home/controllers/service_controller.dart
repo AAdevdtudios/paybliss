@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:paybliss/app/modules/home/views/booking_view.dart';
 import 'package:paybliss/app/modules/vtu_screens/views/airtime_vtu_view.dart';
+import 'package:paybliss/app/modules/vtu_screens/views/betting_view.dart';
 import 'package:paybliss/app/modules/vtu_screens/views/cable_vtu_view.dart';
 import 'package:paybliss/app/modules/vtu_screens/views/data_vtu_view.dart';
 import 'package:paybliss/app/modules/vtu_screens/views/education_vtu_view.dart';
@@ -41,6 +43,16 @@ class ServiceController extends GetxController {
       name: "Education",
       icon: Bootstrap.book_half,
       path: const EducationVtuView(),
+    ),
+    ServicesItem(
+      name: "Betting",
+      icon: FontAwesome.dice,
+      path: const BettingView(),
+    ),
+    ServicesItem(
+      name: "Booking",
+      icon: Bootstrap.airplane,
+      path: const BookingView(),
     ),
   ];
 }

@@ -23,6 +23,9 @@ class TextStylesItem {
 class ThemeModeData {
   ThemeData darkMode = ThemeData(
     useMaterial3: true,
+    listTileTheme: const ListTileThemeData(
+      iconColor: Colors.white,
+    ),
     scaffoldBackgroundColor: Colors.black,
     primaryColor: const Color(0xfff8b858),
     iconTheme: const IconThemeData(
@@ -80,6 +83,12 @@ class ThemeModeData {
         color: Colors.white,
       ),
     ),
+    dropdownMenuTheme: const DropdownMenuThemeData(
+      textStyle: TextStyle(
+        color: Colors.black,
+        backgroundColor: Colors.green,
+      ),
+    ),
     textTheme: TextTheme(
       bodySmall: TextStylesItem().smallText.copyWith(color: Colors.white),
       bodyMedium: TextStylesItem().mediumText.copyWith(color: Colors.white),
@@ -100,6 +109,35 @@ class ThemeModeData {
   );
   ThemeData lightMode = ThemeData(
     useMaterial3: true,
+    listTileTheme: const ListTileThemeData(
+      iconColor: Colors.black,
+    ),
+    chipTheme: ChipThemeData(
+      selectedColor: Colors.white,
+      iconTheme: const IconThemeData(
+        color: Colors.white,
+      ),
+      checkmarkColor: Colors.white,
+      elevation: 0,
+      disabledColor: const Color(0xfff8b858),
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(
+          color: Colors.black54,
+          style: BorderStyle.solid,
+        ),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      labelStyle: TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 25.sp,
+        color: Colors.black,
+      ),
+      secondaryLabelStyle: TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 25.sp,
+        color: Colors.black,
+      ),
+    ),
     scaffoldBackgroundColor: Colors.white,
     primaryColor: const Color(0xfff8b858),
     highlightColor: Colors.black54,

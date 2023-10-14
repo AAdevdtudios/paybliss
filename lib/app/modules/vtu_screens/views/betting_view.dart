@@ -3,16 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/education_controller.dart';
+import '../controllers/betting_controller.dart';
 
-class EducationVtuView extends GetView {
-  const EducationVtuView({Key? key}) : super(key: key);
+class BettingView extends GetView {
+  const BettingView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(EducationController());
+    var controller = Get.put(BettingController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Education'),
+        title: const Text('Betting'),
         centerTitle: true,
       ),
       body: Obx(
@@ -21,7 +21,7 @@ class EducationVtuView extends GetView {
             horizontal: 15,
           ),
           children: [
-            const Text("Services"),
+            const Text("Service"),
             SizedBox(
               height: 20.h,
             ),
@@ -29,19 +29,12 @@ class EducationVtuView extends GetView {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: List.generate(
-                  controller.services.length,
+                  controller.betServices.length,
                   (index) => Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: ElevatedButton(
-                      onPressed: () {
-                        controller.pinService.value =
-                            controller.services[index];
-                        if (controller.pinService.value == "NECO") {
-                          controller.amount.text = "800";
-                        } else {
-                          controller.amount.text = "3900";
-                        }
-                      },
+                      onPressed: () => controller.betService.value =
+                          controller.betServices[index],
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 40,
@@ -49,32 +42,33 @@ class EducationVtuView extends GetView {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        backgroundColor: controller.pinService.value ==
-                                controller.services[index]
+                        backgroundColor: controller.betService.value ==
+                                controller.betServices[index]
                             ? Theme.of(context).primaryColor
                             : Colors.white,
                       ),
                       child: Text(
-                        controller.services[index],
+                        controller.betServices[index],
                       ),
                     ),
                   ),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 30,
+            SizedBox(
+              height: 30.h,
             ),
-            const Text("Amount"),
+            const Text("Bet number"),
             SizedBox(
               height: 20.h,
             ),
-            TextField(
-              enabled: false,
-              controller: controller.amount,
+            TextFormField(
+              decoration: const InputDecoration(
+                hintText: "Bet Id",
+              ),
             ),
-            const SizedBox(
-              height: 30,
+            SizedBox(
+              height: 40.h,
             ),
             ElevatedButton(
               onPressed: () => {},

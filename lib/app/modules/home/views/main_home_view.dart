@@ -86,7 +86,7 @@ class MainHomeView extends GetView {
                     ),
                     padding: const EdgeInsets.all(8),
                     width: double.infinity,
-                    height: 215.h,
+                    height: 230.h,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

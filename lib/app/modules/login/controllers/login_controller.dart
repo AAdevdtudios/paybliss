@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import "package:http/http.dart" as http;
@@ -47,7 +48,15 @@ class LoginController extends GetxController {
         box.write("jwt", responseData.data!.jwToken);
         box.write("refresh", responseData.data!.refreshToken);
         box.write('user', responseData.toJson());
-        print(responseData.data!.pin);
+        AwesomeNotifications().createNotification(
+          content: NotificationContent(
+            id: 5,
+            channelKey: "blissbill_channel",
+            title: "Successful Login",
+            body: "Your account is logged in",
+          ),
+        );
+        print("success");
         if (responseData.data!.pin.toString() == "0") {
           Get.offAll(const NewPinView());
         } else {

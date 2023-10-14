@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:get/get.dart';
 
 class OnboardItems {
@@ -13,6 +14,16 @@ class OnboardItems {
 }
 
 class OnboardingController extends GetxController {
+  @override
+  void onInit() {
+    AwesomeNotifications().isNotificationAllowed().then((value) {
+      if (!value) {
+        AwesomeNotifications().requestPermissionToSendNotifications();
+      }
+    });
+    super.onInit();
+  }
+
   List<OnboardItems> onboardItems = [
     OnboardItems(
       image: 'assets/images/bills.png',
