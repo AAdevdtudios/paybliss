@@ -149,8 +149,10 @@ class ApiServices {
     return true;
   }
 
+// /user
   Future<bool> loginPin(int pin) async {
     var url = Uri.parse("${BaseUrl}auth/getPin?pin=$pin");
+    print(url.toString());
     header["Authorization"] = "Bearer ${box.read("jwt")}";
     try {
       var response = await client.get(
@@ -187,6 +189,7 @@ class ApiServices {
         title: "Network",
         middleText: "Un-able to access the internet",
       );
+      print(e);
       return false;
     }
   }
