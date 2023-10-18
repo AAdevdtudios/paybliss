@@ -44,6 +44,7 @@ class LoginController extends GetxController {
         encoding: Encoding.getByName("utf-8"),
       );
       var responseData = UserResponse.fromJson(json.decode(response.body));
+      print(response);
       if (response.statusCode == 200) {
         box.write("jwt", responseData.data!.jwToken);
         box.write("refresh", responseData.data!.refreshToken);

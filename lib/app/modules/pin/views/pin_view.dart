@@ -21,14 +21,14 @@ class PinView extends GetView<PinController> {
       ),
       body: Obx(
         () => controller.isLoading.value
-            ? const SizedBox(
+            ? SizedBox(
                 child: Center(
                   child: LoadingBouncingLine.circle(
-                    borderColor: Colors.cyan,
+                    borderColor: Theme.of(context).primaryColor,
                     borderSize: 3.0,
                     size: 50.0,
                     backgroundColor: Colors.cyanAccent,
-                    duration: Duration(milliseconds: 500),
+                    duration: const Duration(milliseconds: 500),
                   ),
                 ),
               )

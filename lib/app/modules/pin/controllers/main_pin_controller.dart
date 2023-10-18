@@ -41,6 +41,20 @@ class MainPinController extends GetxController {
       currentTab.value += 1;
       await ApiServices().loginPin(int.parse(value.value));
       isLoading.value = false;
+      // Future.delayed(
+      //   const Duration(
+      //     seconds: 7,
+      //   ),
+      //   () {
+      //     if (box.read("pin_code") == value.value) {
+      //       Get.offAllNamed(Routes.HOME);
+      //       isLoading.value = false;
+      //     } else {
+      //       Get.snackbar("Error", "Pin code is invalid");
+      //       isLoading.value = false;
+      //     }
+      //   },
+      // );
       // print(loginAuth);
       // if (loginAuth == true) {
       //   isLoading.value = false;

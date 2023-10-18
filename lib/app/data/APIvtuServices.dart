@@ -51,14 +51,12 @@ class VtuService implements IVtuService {
   //Pay for Data
   @override
   Future payData(String network, plan, number, planName) async {
-    var url = Uri.parse(
-        "$vtu/data?network=$network&plan=$plan&number=$number&planName=$planName");
+    var url = Uri.parse("$vtu/data?network=$network&plan=$plan&number=$number");
     header["Authorization"] = "Bearer ${box.read("jwt")}";
     try {
       var response = await client.post(
         url,
         headers: header,
-        encoding: Encoding.getByName("utf-8"),
       );
       if (response.statusCode == 200) {
         _showBottomSheet(
@@ -90,10 +88,9 @@ class VtuService implements IVtuService {
     var url = Uri.parse("$vtu/data?network=$network");
     header["Authorization"] = "Bearer ${box.read("jwt")}";
     try {
-      var response = await client.post(
+      var response = await client.get(
         url,
         headers: header,
-        encoding: Encoding.getByName("utf-8"),
       );
       if (response.statusCode == 200) {
         return response.body;

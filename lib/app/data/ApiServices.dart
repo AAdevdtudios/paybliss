@@ -6,9 +6,8 @@ import "package:http/http.dart" as http;
 import 'package:paybliss/app/modules/login/views/login_view.dart';
 import 'package:paybliss/app/modules/onboarding/views/onboarding_view.dart';
 import 'package:paybliss/app/modules/pin/views/new_pin_view.dart';
+import 'package:paybliss/app/routes/app_pages.dart';
 import 'package:paybliss/main.dart';
-
-import '../modules/home/views/home_view.dart';
 
 const String BaseUrl = "https://blissbill.onrender.com/api/";
 Map<String, String> header = {
@@ -133,10 +132,9 @@ class ApiServices {
             "lastname": responseData.data!.lastName.toString(),
             "pin_code": responseData.data!.pin.toString(),
             "referralCode": responseData.data!.referralsCode.toString(),
-            "jwt": responseData.data!.jwToken.toString(),
-            "refresh": responseData.data!.refreshToken.toString()
           },
         );
+        print(box.read("firstname"));
         return true;
       }
       _ShowDialog("Error", responseData.message.toString(), false);
@@ -152,7 +150,6 @@ class ApiServices {
 // /user
   Future<bool> loginPin(int pin) async {
     var url = Uri.parse("${BaseUrl}auth/getPin?pin=$pin");
-    print(url.toString());
     header["Authorization"] = "Bearer ${box.read("jwt")}";
     try {
       var response = await client.get(
@@ -161,7 +158,6 @@ class ApiServices {
       );
       var responseData = UserResponse.fromJson(json.decode(response.body));
       if (response.statusCode == 200) {
-        box.write('user', responseData.toJson());
         storesInfo(
           {
             "email": responseData.data!.email.toString(),
@@ -169,12 +165,9 @@ class ApiServices {
             "lastname": responseData.data!.lastName.toString(),
             "pin_code": responseData.data!.pin.toString(),
             "referralCode": responseData.data!.referralsCode.toString(),
-            "jwt": responseData.data!.jwToken.toString(),
-            "refresh": responseData.data!.refreshToken.toString()
           },
         );
-        print(box.read("jwt"));
-        Get.offAll(const HomeView());
+        Get.offAllNamed(Routes.HOME);
         return true;
       } else if (response.statusCode == 401) {
         box.erase();
@@ -189,13 +182,13 @@ class ApiServices {
         title: "Network",
         middleText: "Un-able to access the internet",
       );
-      print(e);
       return false;
     }
   }
 
   storesInfo(Map<String, String> data) {
     data.forEach((key, value) => box.write(key, value));
+    print(box.read("firstname"));
   }
 }
 
