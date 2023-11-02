@@ -18,7 +18,6 @@ class HomeView extends GetView<HomeController> {
         statusBarColor: Color(0xfff8b858),
       ),
     );
-    var theme = Theme.of(context);
     return Scaffold(
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(

@@ -27,7 +27,7 @@ class PinView extends GetView<PinController> {
                     borderColor: Theme.of(context).primaryColor,
                     borderSize: 3.0,
                     size: 50.0,
-                    backgroundColor: Colors.cyanAccent,
+                    backgroundColor: Theme.of(context).primaryColor,
                     duration: const Duration(milliseconds: 500),
                   ),
                 ),

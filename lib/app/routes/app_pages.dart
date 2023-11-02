@@ -1,8 +1,18 @@
 import 'package:get/get.dart';
 
 import '../../main.dart';
+import '../modules/AccountTransfer/bindings/account_transfer_binding.dart';
+import '../modules/AccountTransfer/views/account_transfer_view.dart';
+import '../modules/Notifications/bindings/notifications_binding.dart';
+import '../modules/Notifications/views/notifications_view.dart';
 import '../modules/SplashScreen/bindings/splash_screen_binding.dart';
 import '../modules/SplashScreen/views/splash_screen_view.dart';
+import '../modules/TagTransfer/bindings/tag_transfer_binding.dart';
+import '../modules/TagTransfer/views/tag_transfer_view.dart';
+import '../modules/TransactionHistory/bindings/transaction_history_binding.dart';
+import '../modules/TransactionHistory/views/transaction_history_view.dart';
+import '../modules/Transfer/bindings/transfer_binding.dart';
+import '../modules/Transfer/views/transfer_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -85,6 +95,31 @@ class AppPages {
       name: _Paths.SPLASH_SCREEN,
       page: () => const SplashScreenView(),
       binding: SplashScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.TRANSACTION_HISTORY,
+      page: () => const TransactionHistoryView(),
+      binding: TransactionHistoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFICATIONS,
+      page: () => const NotificationsView(),
+      binding: NotificationsBinding(),
+    ),
+    GetPage(
+      name: _Paths.TRANSFER,
+      page: () => const TransferView(),
+      binding: TransferBinding(),
+    ),
+    GetPage(
+      name: _Paths.ACCOUNT_TRANSFER,
+      page: () => const AccountTransferView(),
+      binding: AccountTransferBinding(),
+    ),
+    GetPage(
+      name: _Paths.TAG_TRANSFER,
+      page: () => const TagTransferView(),
+      binding: TagTransferBinding(),
     ),
   ];
 }

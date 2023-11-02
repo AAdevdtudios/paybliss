@@ -31,7 +31,7 @@ class LoginController extends GetxController {
 
   login() async {
     isLoading.value = true;
-    var url = Uri.parse("${BaseUrl}auth/login");
+    var url = Uri.parse("$BaseUrl/auth/login");
     Map<String, String> res = {
       "email": email.text,
       "password": password.text,
@@ -44,7 +44,7 @@ class LoginController extends GetxController {
         encoding: Encoding.getByName("utf-8"),
       );
       var responseData = UserResponse.fromJson(json.decode(response.body));
-      print(response);
+      print(responseData.statusCode);
       if (response.statusCode == 200) {
         box.write("jwt", responseData.data!.jwToken);
         box.write("refresh", responseData.data!.refreshToken);

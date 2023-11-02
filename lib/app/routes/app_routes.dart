@@ -11,6 +11,12 @@ abstract class Routes {
   static const PIN = _Paths.PIN;
   static const VTU_SCREENS = _Paths.VTU_SCREENS;
   static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
+  static const TRANSACTION_HISTORY = _Paths.TRANSACTION_HISTORY;
+  static const NOTIFICATIONS = _Paths.NOTIFICATIONS;
+  static const INTERNET = _Paths.INTERNET;
+  static const TRANSFER = _Paths.TRANSFER;
+  static const ACCOUNT_TRANSFER = _Paths.ACCOUNT_TRANSFER;
+  static const TAG_TRANSFER = _Paths.TAG_TRANSFER;
 }
 
 abstract class _Paths {
@@ -23,4 +29,10 @@ abstract class _Paths {
   static const PIN = '/pin';
   static const VTU_SCREENS = '/vtu-screens';
   static const SPLASH_SCREEN = '/splash-screen';
+  static const TRANSACTION_HISTORY = '/transaction-history';
+  static const NOTIFICATIONS = '/notifications';
+  static const INTERNET = '/internet';
+  static const TRANSFER = '/transfer';
+  static const ACCOUNT_TRANSFER = '/account-transfer';
+  static const TAG_TRANSFER = '/tag-transfer';
 }

@@ -15,6 +15,7 @@ import '../../vtu_screens/views/electricity_vtu_view.dart';
 class MainHomeController extends GetxController {
   var response = UserResponse().obs;
   RxBool isLoading = true.obs;
+  RxBool showAmount = false.obs;
   List<ServicesItem> services = [
     ServicesItem(
       name: "Airtime",

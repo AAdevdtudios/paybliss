@@ -1,6 +1,7 @@
 import 'package:cool_dropdown/cool_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loading_overlay_pro/loading_overlay_pro.dart';
 
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -95,20 +96,81 @@ class DataVtuView extends GetView {
               SizedBox(
                 height: 10.h,
               ),
-              DropdownButtonFormField(
-                value: controller.selectedVal.value,
-                alignment: Alignment.bottomCenter,
-                hint: const Text("Select bundle"),
-                onChanged: (newValue) =>
-                    controller.selectedVal.value = newValue as String,
-                items: List.generate(
-                  controller.data.length,
-                  (index) => DropdownMenuItem(
-                    value: controller.data[index],
-                    child: Text(
-                      controller.data[index],
+              ListTile(
+                title: const Text("Select Bundle"),
+                subtitle: Text(
+                  controller.selectedPart.value == null
+                      ? ""
+                      : controller.selectedPart.value!.name,
+                ),
+                trailing: Text(
+                  controller.selectedPart.value == null
+                      ? ""
+                      : controller.selectedPart.value!.amount.toString(),
+                ),
+                onTap: () {
+                  Get.bottomSheet(
+                    Container(
+                      height: 500.h,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 10,
+                      ),
+                      decoration: const BoxDecoration(
+                        color: Colors.white70,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30),
+                        ),
+                      ),
+                      child: FutureBuilder(
+                        future: controller.getDataValues(),
+                        builder: (context, snapshot) {
+                          if (snapshot.data == null) {
+                            return Center(
+                              child: LoadingBouncingLine.circle(
+                                borderColor: Theme.of(context).primaryColor,
+                                borderSize: 3.0,
+                                size: 50.0,
+                                backgroundColor: Theme.of(context).primaryColor,
+                                duration: const Duration(milliseconds: 500),
+                              ),
+                            );
+                          } else {
+                            return ListView.builder(
+                              itemBuilder: (context, i) => ListTile(
+                                title: Text(
+                                  snapshot.data[i].name,
+                                  style: TextStylesItem().mediumText.copyWith(
+                                        color: Colors.black,
+                                      ),
+                                ),
+                                trailing: Text(
+                                  "NGN ${snapshot.data[i].amount.toString()}",
+                                  style: TextStylesItem().mediumText.copyWith(
+                                        color: Colors.black,
+                                      ),
+                                ),
+                                onTap: () {
+                                  controller.selectedPart.value =
+                                      snapshot.data[i];
+                                  Get.back();
+                                },
+                              ),
+                              itemCount: snapshot.data.length,
+                            );
+                          }
+                        },
+                      ),
                     ),
-                  ),
+                  );
+                },
+                leading: const Icon(
+                  FontAwesome.globe,
+                ),
+                tileColor: Colors.white24,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
               SizedBox(

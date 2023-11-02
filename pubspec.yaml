@@ -20,6 +20,7 @@ dependencies:
   intl: any
   flutter_animate: any
   searchable_paginated_dropdown: any
+  textfield_search: any
   loadmore: any
   list_load_more: any
   url_launcher: any
@@ -31,6 +32,7 @@ dependencies:
   video_player: any
   u_credit_card: any
   get_storage: any
+  share_plus: any
   http: any
   get: 4.6.5
   flutter:
@@ -59,6 +61,6 @@ flutter_launcher_icons:
 
 flutter_native_splash:
   color: "#FFFFFF"
-  image: assets/icons/logo_img.png
+  image: assets/icons/logo_img-1152.png
   color_dark: "#000000"
-  image_dark: assets/icons/logo_img.png
+  image_dark: assets/icons/logo_img-1152.png

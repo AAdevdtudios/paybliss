@@ -11,7 +11,7 @@ class AccountSecurityView extends GetView {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AccountSecurityView'),
+        title: const Text('Account Security'),
         centerTitle: true,
       ),
       body: Column(

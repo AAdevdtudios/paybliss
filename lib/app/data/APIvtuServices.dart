@@ -93,13 +93,11 @@ class VtuService implements IVtuService {
         headers: header,
       );
       if (response.statusCode == 200) {
-        return response.body;
+        return json.decode(response.body);
       } else {
-        _showBottomSheet(
+        _showVtuDialog(
           "Failed to Send",
           "Try again",
-          FontAwesome.xmark,
-          () => {},
           Colors.red[100],
         );
       }

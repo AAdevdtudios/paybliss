@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:paybliss/app/data/Models/UserResponse.dart';
+import 'package:paybliss/app/modules/home/views/cards_view.dart';
 import 'package:paybliss/app/modules/home/views/main_home_view.dart';
 import 'package:paybliss/app/modules/home/views/profile_view.dart';
 import 'package:paybliss/app/modules/home/views/services_view.dart';
@@ -37,7 +38,7 @@ class HomeController extends GetxController {
   List<Widget> screens = [
     const MainHomeView(),
     const ServicesView(),
-    // const CardsView(),
+    const CardsView(),
     const ProfileView(),
   ];
 
@@ -52,11 +53,11 @@ class HomeController extends GetxController {
       icons: Icons.wallet,
       altIcon: Bootstrap.wallet_fill,
     ),
-    // NavigationBarItemClass(
-    //   name: "Card",
-    //   icons: Icons.credit_card,
-    //   altIcon: Bootstrap.credit_card_2_back_fill,
-    // ),
+    NavigationBarItemClass(
+      name: "Card",
+      icons: Icons.credit_card,
+      altIcon: Bootstrap.credit_card_2_back_fill,
+    ),
     NavigationBarItemClass(
       name: "Profile",
       icons: Bootstrap.person,

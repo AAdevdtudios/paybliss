@@ -26,17 +26,27 @@ class CableVtuView extends GetView {
               SizedBox(
                 height: 10.h,
               ),
-              DropdownButtonFormField(
-                value: controller.selectedValue.value,
-                alignment: Alignment.bottomCenter,
-                onChanged: (newValue) =>
-                    controller.selectedValue.value = newValue as String,
-                items: List.generate(
-                  controller.cables.length,
-                  (index) => DropdownMenuItem(
-                    value: controller.cables[index],
-                    child: Text(
-                      controller.cables[index],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: List.generate(
+                    controller.cables.length,
+                    (index) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: ElevatedButton(
+                        onPressed: () => controller.selectedValue.value =
+                            controller.cables[index],
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: controller.selectedValue.value ==
+                                  controller.cables[index]
+                              ? Theme.of(context).primaryColor
+                              : Colors.white54,
+                        ),
+                        child: Text(
+                          controller.cables[index],
+                        ),
+                      ),
                     ),
                   ),
                 ),

@@ -25,6 +25,7 @@ class ThemeModeData {
     useMaterial3: true,
     listTileTheme: const ListTileThemeData(
       iconColor: Colors.white,
+      textColor: Colors.white,
     ),
     scaffoldBackgroundColor: Colors.black,
     primaryColor: const Color(0xfff8b858),
@@ -83,12 +84,6 @@ class ThemeModeData {
         color: Colors.white,
       ),
     ),
-    dropdownMenuTheme: const DropdownMenuThemeData(
-      textStyle: TextStyle(
-        color: Colors.black,
-        backgroundColor: Colors.green,
-      ),
-    ),
     textTheme: TextTheme(
       bodySmall: TextStylesItem().smallText.copyWith(color: Colors.white),
       bodyMedium: TextStylesItem().mediumText.copyWith(color: Colors.white),
@@ -99,12 +94,10 @@ class ThemeModeData {
       titleLarge: TextStylesItem().largeText.copyWith(color: Colors.white),
       labelLarge: TextStylesItem().largeText.copyWith(
             color: const Color(0xffF8B858),
-            fontSize: 25.sp,
           ),
       labelSmall: TextStylesItem().smallText.copyWith(color: Colors.white24),
       labelMedium: TextStylesItem().largeText.copyWith(
             color: const Color(0xffF8B858),
-            fontSize: 13.sp,
           ),
     ),
   );
@@ -112,6 +105,7 @@ class ThemeModeData {
     useMaterial3: true,
     listTileTheme: const ListTileThemeData(
       iconColor: Colors.black,
+      textColor: Colors.black,
     ),
     chipTheme: ChipThemeData(
       selectedColor: Colors.white,
@@ -167,7 +161,7 @@ class ThemeModeData {
       fillColor: const Color(0x09000000),
       focusColor: Colors.orange,
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(5),
         borderSide: const BorderSide(
           color: Colors.orange,
         ),
@@ -187,15 +181,11 @@ class ThemeModeData {
       titleSmall: TextStylesItem().mediumText.copyWith(color: Colors.black),
       titleMedium: TextStylesItem().mediumText.copyWith(color: Colors.black),
       titleLarge: TextStylesItem().largeText.copyWith(color: Colors.black),
-      labelLarge: TextStylesItem().largeText.copyWith(
-            color: const Color(0xffF8B858),
-            fontSize: 25.sp,
-          ),
+      labelLarge:
+          TextStylesItem().largeText.copyWith(color: const Color(0xffF8B858)),
       labelSmall: TextStylesItem().smallText.copyWith(color: Colors.white24),
-      labelMedium: TextStylesItem().largeText.copyWith(
-            color: const Color(0xffF8B858),
-            fontSize: 13.sp,
-          ),
+      labelMedium:
+          TextStylesItem().largeText.copyWith(color: const Color(0xffF8B858)),
     ),
   );
 }

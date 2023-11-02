@@ -10,7 +10,6 @@ class SplashScreenView extends GetView<SplashScreenController> {
   @override
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
-    var controller = Get.put(SplashScreenController());
     return Scaffold(
       body: SizedBox(
         child: Center(

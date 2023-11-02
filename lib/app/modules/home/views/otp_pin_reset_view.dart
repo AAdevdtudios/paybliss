@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:paybliss/app/modules/forgot_password/controllers/forgot_password_controller.dart';
 import 'package:paybliss/app/modules/pin/views/new_pin_view.dart';
+import 'package:paybliss/main.dart';
 
 class OtpPinResetView extends GetView {
   const OtpPinResetView({Key? key}) : super(key: key);
@@ -29,7 +30,7 @@ class OtpPinResetView extends GetView {
               height: 10.h,
             ),
             Text(
-              'Enter 4 digit code sent to your email address james@gmail.com',
+              'Enter 4 digit code sent to your email address ${box.read("email")}',
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontSize: 17.sp,
                   ),

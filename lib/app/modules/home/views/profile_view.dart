@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:paybliss/app/modules/home/controllers/home_controller.dart';
 import 'package:paybliss/app/modules/home/controllers/profile_controller.dart';
 import 'package:paybliss/app/modules/home/views/account_security_view.dart';
 import 'package:paybliss/app/modules/home/views/help_view.dart';
@@ -18,7 +17,6 @@ class ProfileView extends GetView {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var homeController = Get.put(HomeController());
     var controller = Get.put(ProfileController());
     return Column(
       children: [

@@ -9,7 +9,7 @@ import 'package:paybliss/app/modules/pin/views/new_pin_view.dart';
 import 'package:paybliss/app/routes/app_pages.dart';
 import 'package:paybliss/main.dart';
 
-const String BaseUrl = "https://blissbill.onrender.com/api/";
+const String BaseUrl = "https://blissbill.onrender.com/api";
 Map<String, String> header = {
   "Accept": "application/json",
   "content-type": "application/json",
@@ -20,7 +20,7 @@ class ApiServices {
   var client = http.Client();
 
   Future<bool> register_loginUser(String email, String password) async {
-    var url = Uri.parse("${BaseUrl}auth/login");
+    var url = Uri.parse("$BaseUrl/auth/login");
     Map<String, String> res = {
       "email": email,
       "password": password,
@@ -55,7 +55,7 @@ class ApiServices {
   }
 
   Future<bool> registerUser(dynamic user) async {
-    var url = Uri.parse("${BaseUrl}auth/register");
+    var url = Uri.parse("$BaseUrl/auth/register");
 
     try {
       var response = await client.post(
@@ -109,8 +109,37 @@ class ApiServices {
     }
   }
 
+  Future updateUser(dynamic user) async {
+    var url = Uri.parse("$BaseUrl/auth/update-user");
+    header["Authorization"] = "Bearer ${box.read("jwt")}";
+    try {
+      var response = await client.post(
+        url,
+        body: json.encode(user),
+        headers: header,
+        encoding: Encoding.getByName("utf-8"),
+      );
+      var responseData = UserResponse.fromJson(json.decode(response.body));
+      if (response.statusCode == 200) {
+        storesInfo(
+          {
+            "email": responseData.data!.email.toString(),
+            "firstname": responseData.data!.firstName.toString(),
+            "lastname": responseData.data!.lastName.toString(),
+          },
+        );
+        _ShowDialog("Successful", responseData.message.toString(), false);
+      } else {
+        _ShowDialog("Error", responseData.message.toString(), false);
+      }
+    } catch (e) {
+      print(e);
+      _ShowDialog("error", "Un-able to access the internet", false);
+    }
+  }
+
   Future<bool> setPin(int pin) async {
-    var url = Uri.parse("${BaseUrl}auth/set-pin");
+    var url = Uri.parse("$BaseUrl/auth/set-pin");
     header["Authorization"] = "Bearer ${box.read("jwt")}";
     Map<String, int> res = {
       "pin": pin,
@@ -149,7 +178,7 @@ class ApiServices {
 
 // /user
   Future<bool> loginPin(int pin) async {
-    var url = Uri.parse("${BaseUrl}auth/getPin?pin=$pin");
+    var url = Uri.parse("$BaseUrl/auth/getPin?pin=$pin");
     header["Authorization"] = "Bearer ${box.read("jwt")}";
     try {
       var response = await client.get(
@@ -178,6 +207,7 @@ class ApiServices {
         return false;
       }
     } catch (e) {
+      print(e);
       Get.defaultDialog(
         title: "Network",
         middleText: "Un-able to access the internet",
