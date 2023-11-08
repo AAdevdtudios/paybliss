@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:paybliss/app/data/Models/UserResponse.dart';
-import 'package:paybliss/app/modules/home/views/cards_view.dart';
+import 'package:paybliss/app/modules/VirtualCard/views/cards_view.dart';
 import 'package:paybliss/app/modules/home/views/main_home_view.dart';
 import 'package:paybliss/app/modules/home/views/profile_view.dart';
 import 'package:paybliss/app/modules/home/views/services_view.dart';
@@ -40,7 +40,7 @@ class HomeController extends GetxController {
     const ServicesView(),
     const CardsView(),
     const ProfileView(),
-  ];
+  ].obs;
 
   List<NavigationBarItemClass> navBarItems = [
     NavigationBarItemClass(

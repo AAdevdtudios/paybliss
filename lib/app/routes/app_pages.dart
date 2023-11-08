@@ -13,6 +13,8 @@ import '../modules/TransactionHistory/bindings/transaction_history_binding.dart'
 import '../modules/TransactionHistory/views/transaction_history_view.dart';
 import '../modules/Transfer/bindings/transfer_binding.dart';
 import '../modules/Transfer/views/transfer_view.dart';
+import '../modules/VirtualCard/bindings/virtual_card_binding.dart';
+import '../modules/VirtualCard/views/virtual_card_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -120,6 +122,11 @@ class AppPages {
       name: _Paths.TAG_TRANSFER,
       page: () => const TagTransferView(),
       binding: TagTransferBinding(),
+    ),
+    GetPage(
+      name: _Paths.VIRTUAL_CARD,
+      page: () => const VirtualCardView(),
+      binding: VirtualCardBinding(),
     ),
   ];
 }

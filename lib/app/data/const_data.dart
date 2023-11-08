@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_input_formatter/mask_input_formatter.dart';
 
 MaskInputFormatter phone = MaskInputFormatter(mask: '####-###-####');
+MaskInputFormatter amount = MaskInputFormatter(mask: '#,###,###,###,');
 
 class TextStylesItem {
   TextStyle smallText = GoogleFonts.poppins(

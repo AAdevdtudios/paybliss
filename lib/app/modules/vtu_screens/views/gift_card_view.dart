@@ -17,6 +17,7 @@ class GiftCardView extends GetView {
       body: ListView(
         padding: const EdgeInsets.symmetric(
           horizontal: 10,
+          vertical: 10,
         ),
         children: [
           Row(
@@ -50,16 +51,32 @@ class GiftCardView extends GetView {
           const SizedBox(
             height: 10,
           ),
-          ListTile(
-            onTap: () => Get.to(GiftcardPayView()),
-            leading: Image.asset(
-              "assets/images/spectranet.png",
-              width: 30,
-              height: 30,
-            ),
-            title: Text(
-              "PUBG Mobile 1500 + 300 UC US",
-              style: Theme.of(context).textTheme.titleMedium,
+          SizedBox(
+            child: GridView(
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 2,
+                mainAxisSpacing: 3,
+              ),
+              shrinkWrap: true,
+              children: List.generate(
+                30,
+                (index) => GestureDetector(
+                  onTap: () => Get.to(const GiftcardPayView()),
+                  child: SizedBox(
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 80,
+                          color: Colors.green,
+                        ),
+                        const Text("PUBG Mobile 1500 + 300 UC US")
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
         ],
