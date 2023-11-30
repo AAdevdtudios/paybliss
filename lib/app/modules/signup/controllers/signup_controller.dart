@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:paybliss/app/data/ApiServices.dart';
+import 'package:paybliss/app/modules/pin/views/new_pin_view.dart';
+import 'package:paybliss/app/modules/signup/views/bvn_view.dart';
+import 'package:paybliss/main.dart';
 
 class SignupController extends GetxController {
   var formState = GlobalKey<FormState>();
+  var bvnForm = GlobalKey<FormState>();
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -11,18 +15,39 @@ class SignupController extends GetxController {
   TextEditingController password = TextEditingController();
   TextEditingController confirmPassword = TextEditingController();
   TextEditingController referrals = TextEditingController();
+  TextEditingController bvnNumber = TextEditingController();
 
   RxBool passwordObscure = true.obs;
   RxBool confirmPasswordObscure = true.obs;
   RxBool isValid = false.obs;
   RxBool isLoading = false.obs;
 
+  RxBool isBvn = false.obs;
   makeChecks() {
     if (formState.currentState!.validate()) {
       isValid.value = true;
     } else {
       isValid.value = false;
     }
+  }
+
+  verfyBvn() {
+    if (bvnForm.currentState!.validate()) {
+      isBvn.value = true;
+    }
+  }
+
+  sendBvn() async {
+    isLoading.value = true;
+    if (bvnForm.currentState!.validate()) {
+      var res = await ApiServices()
+          .bvnVerification(box.read("email"), bvnNumber.text);
+      print(res);
+      if (res) {
+        Get.offAll(const NewPinView());
+      }
+    }
+    isLoading.value = false;
   }
 
   registerUser() async {
@@ -35,10 +60,12 @@ class SignupController extends GetxController {
       "password": password.text,
       "phonenumber": phone.text,
     };
-    await ApiServices().registerUser(user);
-    // if (res == true) {
-    //   Get.offAll(const LoginView());
-    // }
+    var res = await ApiServices().registerUser(user);
+    if (res == true) {
+      Get.offAll(const BvnView());
+    } else {
+      Get.snackbar("Error", "Un-able to connect");
+    }
     isLoading.value = false;
   }
 }

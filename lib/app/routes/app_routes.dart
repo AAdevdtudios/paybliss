@@ -18,6 +18,7 @@ abstract class Routes {
   static const ACCOUNT_TRANSFER = _Paths.ACCOUNT_TRANSFER;
   static const TAG_TRANSFER = _Paths.TAG_TRANSFER;
   static const VIRTUAL_CARD = _Paths.VIRTUAL_CARD;
+  static const PERMISSION = _Paths.PERMISSION;
 }
 
 abstract class _Paths {
@@ -37,4 +38,5 @@ abstract class _Paths {
   static const ACCOUNT_TRANSFER = '/account-transfer';
   static const TAG_TRANSFER = '/tag-transfer';
   static const VIRTUAL_CARD = '/virtual-card';
+  static const PERMISSION = '/permission';
 }

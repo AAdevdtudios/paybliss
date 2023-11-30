@@ -61,8 +61,8 @@ class User {
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    firstName = json['firstName'];
-    lastName = json['lastName'];
+    firstName = json['firstname'];
+    lastName = json['lastname'];
     email = json['email'];
     password = json['password'];
     phoneNumber = json['phoneNumber'];
@@ -80,8 +80,8 @@ class User {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    data['firstName'] = firstName;
-    data['lastName'] = lastName;
+    data['firstname'] = firstName;
+    data['lastname'] = lastName;
     data['email'] = email;
     data['password'] = password;
     data['phoneNumber'] = phoneNumber;

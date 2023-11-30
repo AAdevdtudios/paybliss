@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:paybliss/app/modules/VirtualCard/controllers/cards_controller.dart';
 import 'package:paybliss/app/modules/VirtualCard/views/empty_card_view.dart';
+import 'package:paybliss/app/modules/VirtualCard/views/top_up_card_view.dart';
 import 'package:paybliss/app/modules/VirtualCard/views/withdraw_funds_view.dart';
 import 'package:paybliss/main.dart';
 import 'package:u_credit_card/u_credit_card.dart';
@@ -157,7 +158,12 @@ class CardsView extends GetView {
                             ),
                             Expanded(
                               child: ElevatedButton(
-                                onPressed: () => {},
+                                onPressed: () => Get.to(
+                                  const TopUpCardView(),
+                                  arguments: controller.tab.value == 0
+                                      ? "NGN"
+                                      : "Dollar",
+                                ),
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),

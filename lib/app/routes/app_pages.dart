@@ -5,6 +5,8 @@ import '../modules/AccountTransfer/bindings/account_transfer_binding.dart';
 import '../modules/AccountTransfer/views/account_transfer_view.dart';
 import '../modules/Notifications/bindings/notifications_binding.dart';
 import '../modules/Notifications/views/notifications_view.dart';
+import '../modules/Permission/bindings/permission_binding.dart';
+import '../modules/Permission/views/permission_view.dart';
 import '../modules/SplashScreen/bindings/splash_screen_binding.dart';
 import '../modules/SplashScreen/views/splash_screen_view.dart';
 import '../modules/TagTransfer/bindings/tag_transfer_binding.dart';
@@ -127,6 +129,11 @@ class AppPages {
       name: _Paths.VIRTUAL_CARD,
       page: () => const VirtualCardView(),
       binding: VirtualCardBinding(),
+    ),
+    GetPage(
+      name: _Paths.PERMISSION,
+      page: () => const PermissionView(),
+      binding: PermissionBinding(),
     ),
   ];
 }

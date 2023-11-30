@@ -8,6 +8,7 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.2
   flutter_local_notifications: any
+  permission_handler: any
   eticon_api: any
   flutter_screenutil: any
   google_fonts: any
@@ -18,6 +19,8 @@ dependencies:
   mask_input_formatter: any
   contained_tab_bar_view: any
   intl: any
+  searchfield: ^0.8.7
+  flutter_holo_date_picker: ^1.1.3
   flutter_animate: any
   searchable_paginated_dropdown: any
   textfield_search: any
@@ -31,6 +34,7 @@ dependencies:
   cool_dropdown: any
   video_player: any
   u_credit_card: any
+  flutter_overlay_loader: any
   get_storage: any
   share_plus: any
   http: any

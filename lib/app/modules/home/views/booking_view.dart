@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:paybliss/app/modules/home/controllers/booking_controller.dart';
@@ -23,9 +22,9 @@ class BookingView extends GetView<BookingController> {
           SizedBox(
             height: 10.h,
           ),
-          const Text(
-            "From",
-          ),
+          // const Text(
+          //   "From",
+          // ),
           const SizedBox(
             height: 5,
           ),
@@ -36,40 +35,13 @@ class BookingView extends GetView<BookingController> {
             textStyle: const TextStyle(
               color: Colors.black,
             ),
-            getSelectedValue: (item) {
-              print(item);
-            },
-            decoration: InputDecoration(
-              hintText: "Take off",
-              suffixIcon: const Icon(
-                Icons.flight,
-              ),
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 15,
-              ),
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(
-                  10,
-                ),
-              ),
-            ),
-            scrollbarDecoration: ScrollbarDecoration(
-              controller: ScrollController(),
-              theme: ScrollbarThemeData(
-                radius: const Radius.circular(30.0),
-                thickness: MaterialStateProperty.all(20.0),
-                trackColor: MaterialStateProperty.all(Colors.red),
-              ),
-            ),
           ),
           SizedBox(
             height: 10.h,
           ),
-          const Text(
-            "TO",
-          ),
+          // const Text(
+          //   "TO",
+          // ),
           const SizedBox(
             height: 5,
           ),
@@ -79,33 +51,6 @@ class BookingView extends GetView<BookingController> {
             future: () => controller.toFetch(),
             textStyle: const TextStyle(
               color: Colors.black,
-            ),
-            getSelectedValue: (item) {
-              print(item);
-            },
-            decoration: InputDecoration(
-              hintText: "Take off",
-              suffixIcon: const Icon(
-                Icons.flight_land,
-              ),
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 15,
-              ),
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(
-                  10,
-                ),
-              ),
-            ),
-            scrollbarDecoration: ScrollbarDecoration(
-              controller: ScrollController(),
-              theme: ScrollbarThemeData(
-                radius: const Radius.circular(30.0),
-                thickness: MaterialStateProperty.all(20.0),
-                trackColor: MaterialStateProperty.all(Colors.red),
-              ),
             ),
           ),
           SizedBox(

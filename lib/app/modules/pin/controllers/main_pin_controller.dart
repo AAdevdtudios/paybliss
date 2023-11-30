@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_overlay_pro/animations/bouncing_line.dart';
 import 'package:paybliss/app/data/ApiServices.dart';
 
 class MainPinController extends GetxController {
@@ -39,27 +41,10 @@ class MainPinController extends GetxController {
     if (currentTab.value >= 3) {
       isLoading.value = true;
       currentTab.value += 1;
+
       await ApiServices().loginPin(int.parse(value.value));
+      Get.back();
       isLoading.value = false;
-      // Future.delayed(
-      //   const Duration(
-      //     seconds: 7,
-      //   ),
-      //   () {
-      //     if (box.read("pin_code") == value.value) {
-      //       Get.offAllNamed(Routes.HOME);
-      //       isLoading.value = false;
-      //     } else {
-      //       Get.snackbar("Error", "Pin code is invalid");
-      //       isLoading.value = false;
-      //     }
-      //   },
-      // );
-      // print(loginAuth);
-      // if (loginAuth == true) {
-      //   isLoading.value = false;
-      // }
-      // isLoading.value = false;
     } else {
       currentTab.value += 1;
     }

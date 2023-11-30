@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import "package:http/http.dart" as http;
+import 'package:intl/intl.dart';
 
 class BookingController extends GetxController {
   var index = 0.obs;
@@ -54,19 +54,17 @@ class BookingController extends GetxController {
     try {
       var res = await http.get(
         Uri.parse(
-            "https://test.api.amadeus.com/v1/reference-data/locations?subType=CITY,AIRPORT&keyword=${fromSearch.text}"),
+            "https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?name=${fromSearch.text}"),
         headers: {
-          "Authorization": "Bearer 4Zu7A4TBHQ2NQqtxyWbhNasxTUHe",
+          'X-RapidAPI-Key':
+              '7511401619mshdd5d7ccfa91ac69p16d883jsn60f05734c744',
+          'X-RapidAPI-Host': 'airports-by-api-ninjas.p.rapidapi.com'
         },
       );
       if (res.statusCode == 200) {
-        Map<String, dynamic> response = json.decode(res.body);
-        for (var value in response["data"]) {
-          data.add(value["name"]);
-        }
-        if (data.isEmpty) {
-          return "No data found";
-        }
+        List<dynamic> response = json.decode(res.body);
+        data = response.map((e) => e["name"].toString()).toList();
+        print(data);
         return data;
       } else if (res.statusCode == 401) {
         print("Me");
@@ -82,19 +80,17 @@ class BookingController extends GetxController {
     try {
       var res = await http.get(
         Uri.parse(
-            "https://test.api.amadeus.com/v1/reference-data/locations?subType=CITY,AIRPORT&keyword=${toSearch.text}"),
+            "https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?name=${toSearch.text}"),
         headers: {
-          "Authorization": "Bearer gbK0m9UmKC1Q9OOzPErrzA2Wahz6",
+          'X-RapidAPI-Key':
+              '7511401619mshdd5d7ccfa91ac69p16d883jsn60f05734c744',
+          'X-RapidAPI-Host': 'airports-by-api-ninjas.p.rapidapi.com'
         },
       );
       if (res.statusCode == 200) {
-        Map<String, dynamic> response = json.decode(res.body);
-        for (var value in response["data"]) {
-          data.add(value["name"]);
-        }
-        if (data.isEmpty) {
-          return "No data found";
-        }
+        List<dynamic> response = json.decode(res.body);
+        data = response.map((e) => e["name"].toString()).toList();
+        print(data);
         return data;
       } else if (res.statusCode == 401) {
         print("Me");

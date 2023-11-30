@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:paybliss/app/data/ApiServices.dart';
+import 'package:paybliss/app/modules/Permission/views/permission_view.dart';
 import 'package:paybliss/app/modules/home/views/home_view.dart';
 import 'package:paybliss/main.dart';
 
@@ -46,7 +47,7 @@ class ConfirmPinController extends GetxController {
         var res = await ApiServices().setPin(int.parse(value.value));
         if (res == true) {
           isLoading.value = false;
-          Get.to(const HomeView());
+          Get.to(const PermissionView());
         }
         isLoading.value = false;
       } else {
