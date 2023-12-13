@@ -11,10 +11,14 @@ import '../modules/SplashScreen/bindings/splash_screen_binding.dart';
 import '../modules/SplashScreen/views/splash_screen_view.dart';
 import '../modules/TagTransfer/bindings/tag_transfer_binding.dart';
 import '../modules/TagTransfer/views/tag_transfer_view.dart';
+import '../modules/Tier/bindings/tier_binding.dart';
+import '../modules/Tier/views/tier_view.dart';
 import '../modules/TransactionHistory/bindings/transaction_history_binding.dart';
 import '../modules/TransactionHistory/views/transaction_history_view.dart';
 import '../modules/Transfer/bindings/transfer_binding.dart';
 import '../modules/Transfer/views/transfer_view.dart';
+import '../modules/UpgradeTier/bindings/upgrade_tier_binding.dart';
+import '../modules/UpgradeTier/views/upgrade_tier_view.dart';
 import '../modules/VirtualCard/bindings/virtual_card_binding.dart';
 import '../modules/VirtualCard/views/virtual_card_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
@@ -134,6 +138,16 @@ class AppPages {
       name: _Paths.PERMISSION,
       page: () => const PermissionView(),
       binding: PermissionBinding(),
+    ),
+    GetPage(
+      name: _Paths.TIER,
+      page: () => const TierView(),
+      binding: TierBinding(),
+    ),
+    GetPage(
+      name: _Paths.UPGRADE_TIER,
+      page: () => const UpgradeTierView(),
+      binding: UpgradeTierBinding(),
     ),
   ];
 }

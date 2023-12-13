@@ -14,12 +14,16 @@ dependencies:
   google_fonts: any
   flutter_svg: any
   loading_overlay_pro: ^2.1.1
+  liquid_pull_to_refresh: ^3.0.1
   awesome_notifications: any
   flutter_onboarding_slider: ^1.0.9
   mask_input_formatter: any
   contained_tab_bar_view: any
+  # shimmer: ^3.0.0
   intl: any
   searchfield: ^0.8.7
+  image_picker: ^1.0.5
+  dotted_border: ^2.1.0
   flutter_holo_date_picker: ^1.1.3
   flutter_animate: any
   searchable_paginated_dropdown: any
@@ -27,6 +31,9 @@ dependencies:
   loadmore: any
   list_load_more: any
   url_launcher: any
+  biometric_fingerprint: ^0.0.7
+  custom_pin_screen: any
+  flutter_any_logo: any
   lazy_load_refresh_indicator: any
   flutter_screen_lock: any
   icons_plus: any
@@ -36,6 +43,7 @@ dependencies:
   u_credit_card: any
   flutter_overlay_loader: any
   get_storage: any
+  file_picker: ^6.1.1
   share_plus: any
   http: any
   get: 4.6.5

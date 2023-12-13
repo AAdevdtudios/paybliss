@@ -29,6 +29,7 @@ class LoginController extends GetxController {
     isLoading.value = true;
     var res = await ApiServices().login(email.text, password.text);
     if (res.successful != true) {
+      isLoading.value = false;
       Get.snackbar("Error", res.message!);
     }
     if (res.data!.pin == 0) {

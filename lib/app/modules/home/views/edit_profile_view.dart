@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:paybliss/app/modules/home/controllers/edit_profile_controller.dart';
+import 'package:paybliss/main.dart';
 
 class EditProfileView extends GetView {
   const EditProfileView({Key? key}) : super(key: key);
@@ -61,6 +62,21 @@ class EditProfileView extends GetView {
               controller: controller.email,
               onChanged: (val) => controller.makeChecks(),
               validator: (value) => GetUtils.isEmail(controller.email.text)
+                  ? null
+                  : "Bad email format",
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            const Text("BVN"),
+            SizedBox(
+              height: 20.h,
+            ),
+            TextFormField(
+              controller: controller.bvn,
+              onChanged: (val) => controller.makeChecks(),
+              enabled: box.read("tier") == "Tire0" ? false : true,
+              validator: (value) => GetUtils.isLengthLessThan(value, 3)
                   ? null
                   : "Bad email format",
             ),

@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:paybliss/app/data/const_data.dart';
 import 'package:paybliss/app/modules/Notifications/views/notifications_view.dart';
+import 'package:paybliss/app/modules/Tier/views/tier_view.dart';
 import 'package:paybliss/app/modules/TransactionHistory/views/transaction_history_view.dart';
 import 'package:paybliss/app/modules/Transfer/views/transfer_view.dart';
 import 'package:paybliss/main.dart';
@@ -81,47 +82,57 @@ class MainHomeView extends GetView {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "Available balance",
-                            style: theme.textTheme.bodyMedium!.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w300,
+                  controller.showInfo.value
+                      ? SizedBox(
+                          width: double.infinity,
+                          height: 120.h,
+                          child: ElevatedButton(
+                            onPressed: () => {},
+                            child: const Text("Input your BVN"),
+                          ),
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  "Available balance",
+                                  style: theme.textTheme.bodyMedium!.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                                IconButton(
+                                  iconSize: 17.sp,
+                                  padding: EdgeInsets.zero,
+                                  onPressed: () => controller.showAmount.value =
+                                      !controller.showAmount.value,
+                                  icon: const Icon(
+                                    Bootstrap.eye_fill,
+                                    color: Colors.white60,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          IconButton(
-                            iconSize: 17.sp,
-                            padding: EdgeInsets.zero,
-                            onPressed: () => controller.showAmount.value =
-                                !controller.showAmount.value,
-                            icon: const Icon(
-                              Bootstrap.eye_fill,
-                              color: Colors.white60,
+                            TextButton.icon(
+                              onPressed: () =>
+                                  Get.to(const TransactionHistoryView()),
+                              icon: Text(
+                                "Transaction History",
+                                style: theme.textTheme.bodyMedium!.copyWith(
+                                  color: Colors.white,
+                                  fontSize: 10.sp,
+                                ),
+                              ),
+                              label: Icon(
+                                Bootstrap.chevron_right,
+                                size: 17.sp,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      TextButton.icon(
-                        onPressed: () => Get.to(const TransactionHistoryView()),
-                        icon: Text(
-                          "Transaction History",
-                          style: theme.textTheme.bodyMedium!.copyWith(
-                            color: Colors.white,
-                            fontSize: 10.sp,
-                          ),
+                          ],
                         ),
-                        label: Icon(
-                          Bootstrap.chevron_right,
-                          size: 17.sp,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
                   Text.rich(
                     TextSpan(
                       children: [
@@ -134,7 +145,9 @@ class MainHomeView extends GetView {
                           ),
                         ),
                         TextSpan(
-                          text: controller.showAmount.value ? "****" : "0.0",
+                          text: controller.showAmount.value
+                              ? "****"
+                              : box.read("amount") ?? "0",
                         ),
                       ],
                     ),
@@ -154,12 +167,12 @@ class MainHomeView extends GetView {
                           actions: [
                             ElevatedButton(
                               onPressed: () async => await Share.share(
-                                  "BlissBill account, make bank transfer to the account as shown: \n Bank name: WEMA \n Account Number: 2010111345 \n Bank Beneficiary ${box.read('firstname')}"),
+                                  "BlissBill account, make bank transfer to the account as shown: \n Bank name: Sterling bank \n Account Number: ${box.read("accountNumber")} \n Bank Beneficiary: ${box.read('accountName')}"),
                               child: const Text("Share"),
                             ),
                           ],
                           middleText:
-                              "To add money to your BlissBill account, make bank transfer to the account as shown: \n Bank name: WEMA \n Account Number: 2010111345 \n Bank Beneficiary ${box.read('firstname')}",
+                              "To add money to your BlissBill account, make bank transfer to the account as shown: \n Bank name: Sterling bank \n Account Number: ${box.read("accountNumber")} \n Bank Beneficiary: ${box.read('accountName')}",
                         ),
                         icon: Text(
                           "Add Money",
@@ -202,7 +215,55 @@ class MainHomeView extends GetView {
               ),
             ),
             SizedBox(
-              height: 60.h,
+              height: 20.h,
+            ),
+            box.read("tier") == "Tier0"
+                ? Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Get.theme.primaryColor,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 5,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Upgrade tier",
+                          style: Get.theme.textTheme.bodyLarge!.copyWith(
+                            color: Colors.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Complete your Kyc to get more service offers",
+                              style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () => Get.to(const TierView()),
+                              child: Text(
+                                "Verify KYC",
+                                style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                : const SizedBox(),
+            SizedBox(
+              height: 10.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

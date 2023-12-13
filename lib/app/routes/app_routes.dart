@@ -19,6 +19,8 @@ abstract class Routes {
   static const TAG_TRANSFER = _Paths.TAG_TRANSFER;
   static const VIRTUAL_CARD = _Paths.VIRTUAL_CARD;
   static const PERMISSION = _Paths.PERMISSION;
+  static const TIER = _Paths.TIER;
+  static const UPGRADE_TIER = _Paths.UPGRADE_TIER;
 }
 
 abstract class _Paths {
@@ -39,4 +41,6 @@ abstract class _Paths {
   static const TAG_TRANSFER = '/tag-transfer';
   static const VIRTUAL_CARD = '/virtual-card';
   static const PERMISSION = '/permission';
+  static const TIER = '/tier';
+  static const UPGRADE_TIER = '/upgrade-tier';
 }

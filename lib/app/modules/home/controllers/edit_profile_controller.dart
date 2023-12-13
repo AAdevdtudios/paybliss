@@ -8,6 +8,7 @@ class EditProfileController extends GetxController {
   TextEditingController firstname = TextEditingController();
   TextEditingController lastname = TextEditingController();
   TextEditingController email = TextEditingController();
+  TextEditingController bvn = TextEditingController();
   RxBool isValid = false.obs;
   RxBool isLoading = false.obs;
 
@@ -17,6 +18,7 @@ class EditProfileController extends GetxController {
     firstname.text = box.read("firstname");
     lastname.text = box.read("lastname");
     email.text = box.read("email");
+    bvn.text = box.read("bvn");
   }
 
   makeChecks() {
@@ -32,6 +34,7 @@ class EditProfileController extends GetxController {
       "firstname": firstname.text,
       "lastname": lastname.text,
       "email": email.text,
+      "bvn": bvn.text,
     };
     isLoading.value = true;
     print("Running");

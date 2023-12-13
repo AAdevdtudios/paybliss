@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:paybliss/app/data/ApiServices.dart';
+import 'package:paybliss/app/modules/home/views/home_view.dart';
 import 'package:paybliss/app/modules/pin/views/new_pin_view.dart';
-import 'package:paybliss/app/modules/signup/views/bvn_view.dart';
-import 'package:paybliss/main.dart';
 
 class SignupController extends GetxController {
   var formState = GlobalKey<FormState>();
-  var bvnForm = GlobalKey<FormState>();
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController confirmPassword = TextEditingController();
-  TextEditingController referrals = TextEditingController();
   TextEditingController bvnNumber = TextEditingController();
 
   RxBool passwordObscure = true.obs;
@@ -31,24 +28,24 @@ class SignupController extends GetxController {
     }
   }
 
-  verfyBvn() {
-    if (bvnForm.currentState!.validate()) {
-      isBvn.value = true;
-    }
-  }
+  // verfyBvn() {
+  //   if (bvnForm.currentState!.validate()) {
+  //     isBvn.value = true;
+  //   }
+  // }
 
-  sendBvn() async {
-    isLoading.value = true;
-    if (bvnForm.currentState!.validate()) {
-      var res = await ApiServices()
-          .bvnVerification(box.read("email"), bvnNumber.text);
-      print(res);
-      if (res) {
-        Get.offAll(const NewPinView());
-      }
-    }
-    isLoading.value = false;
-  }
+  // sendBvn() async {
+  //   isLoading.value = true;
+  //   if (bvnForm.currentState!.validate()) {
+  //     var res = await ApiServices()
+  //         .bvnVerification(box.read("email"), bvnNumber.text);
+  //     print(res);
+  //     if (res) {
+  //       Get.offAll(const NewPinView());
+  //     }
+  //   }
+  //   isLoading.value = false;
+  // }
 
   registerUser() async {
     isLoading.value = true;
@@ -58,11 +55,12 @@ class SignupController extends GetxController {
       "lastname": lastName.text,
       "email": email.text,
       "password": password.text,
-      "phonenumber": phone.text,
+      "phoneNumber": phone.text,
+      "bvn": bvnNumber.text,
     };
     var res = await ApiServices().registerUser(user);
     if (res == true) {
-      Get.offAll(const BvnView());
+      Get.offAll(const NewPinView());
     } else {
       Get.snackbar("Error", "Un-able to connect");
     }

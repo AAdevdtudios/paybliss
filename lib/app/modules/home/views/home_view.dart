@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:paybliss/app/data/const_data.dart';
 
 import '../controllers/home_controller.dart';
@@ -52,19 +53,25 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
       ),
-      body: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          SizedBox(
-            height: 20.h,
-          ),
-          Obx(
-            () => PageStorage(
-              bucket: controller.pageStorageBucket,
-              child: controller.screens[controller.currentTab.value],
+      body: LiquidPullToRefresh(
+        backgroundColor: Theme.of(context).primaryColor,
+        color: Colors.black,
+        showChildOpacityTransition: false,
+        onRefresh: () async => await controller.getAccount(),
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            SizedBox(
+              height: 20.h,
             ),
-          ),
-        ],
+            Obx(
+              () => PageStorage(
+                bucket: controller.pageStorageBucket,
+                child: controller.screens[controller.currentTab.value],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

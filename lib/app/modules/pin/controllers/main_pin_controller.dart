@@ -1,58 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loading_overlay_pro/animations/bouncing_line.dart';
 import 'package:paybliss/app/data/ApiServices.dart';
+import 'package:paybliss/app/modules/home/views/home_view.dart';
 
 class MainPinController extends GetxController {
-  RxList<String> values = ["", "", "", ""].obs;
-  RxInt currentTab = 0.obs;
+  var values = ["", "", "", ""].obs;
   RxString value = "".obs;
-  RxBool isLoading = false.obs;
-
-  removeLast() {
-    if (currentTab.value == 0) {
-    } else {
-      currentTab.value -= 1;
-      List<String> c = value.value.split("");
-      c.removeLast();
-      value.value = c.join();
-      updateReactiveList("");
-    }
-  }
-
-  onTapFunction(int index) {
-    if (index != 10) {
-      int sum = index + 1;
-      updateReactiveList(sum.toString());
-      value.value += sum.toString();
-      if (currentTab.value >= 3) {
-        confirmPin();
-      } else {
-        confirmPin();
-      }
-    } else {
-      value.value += "0";
-      updateReactiveList("0");
-      confirmPin();
-    }
-  }
 
   confirmPin() async {
-    if (currentTab.value >= 3) {
-      isLoading.value = true;
-      currentTab.value += 1;
-
+    Get.dialog(
+      const Center(
+        child: SizedBox(
+          width: 20,
+          height: 20,
+          child: CircularProgressIndicator(),
+        ),
+      ),
+      barrierDismissible: false,
+      barrierColor: Colors.white60,
+    );
+    try {
       await ApiServices().loginPin(int.parse(value.value));
-      Get.back();
-      isLoading.value = false;
-    } else {
-      currentTab.value += 1;
+      Get.back(closeOverlays: true);
+      Get.to(const HomeView());
+    } catch (e) {
+      Get.back(closeOverlays: true);
+      print(e.toString());
+      Get.snackbar("Error", e.toString());
     }
-  }
-
-  updateReactiveList(String value) {
-    values.removeAt(currentTab.value);
-    values.insert(currentTab.value, value);
-    values.refresh();
   }
 }

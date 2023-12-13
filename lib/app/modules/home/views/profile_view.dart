@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:paybliss/app/modules/Tier/views/tier_view.dart';
 import 'package:paybliss/app/modules/home/controllers/profile_controller.dart';
 import 'package:paybliss/app/modules/home/views/account_security_view.dart';
 import 'package:paybliss/app/modules/home/views/help_view.dart';
@@ -92,21 +93,21 @@ class ProfileView extends GetView {
                 "Have an issue? Speak to a team",
               ),
             ),
-            // ListTile(
-            //   onTap: () {},
-            //   leading: const Icon(
-            //     Bootstrap.coin,
-            //   ),
-            //   trailing: const Icon(
-            //     Bootstrap.chevron_right,
-            //   ),
-            //   title: const Text(
-            //     "Rate & fees",
-            //   ),
-            //   subtitle: const Text(
-            //     "See exchange rates & fees",
-            //   ),
-            // ),
+            ListTile(
+              onTap: () => Get.to(const TierView()),
+              leading: const Icon(
+                Iconsax.ranking,
+              ),
+              trailing: const Icon(
+                Bootstrap.chevron_right,
+              ),
+              title: const Text(
+                "Upgrade Kyc",
+              ),
+              subtitle: const Text(
+                "Upgrade your tier",
+              ),
+            ),
             // ListTile(
             //   onTap: () {},
             //   leading: const Icon(

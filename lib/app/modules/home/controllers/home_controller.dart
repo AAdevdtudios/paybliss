@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:paybliss/app/data/ApiServices.dart';
 import 'package:paybliss/app/data/Models/UserResponse.dart';
 import 'package:paybliss/app/modules/VirtualCard/views/cards_view.dart';
 import 'package:paybliss/app/modules/home/views/main_home_view.dart';
@@ -28,11 +29,15 @@ class HomeController extends GetxController {
   PageStorageBucket pageStorageBucket = PageStorageBucket();
 
   @override
-  void onInit() {
-    response.value = UserResponse.fromJson(box.read('user'));
-    isLoading.value = false;
-
+  void onInit() async {
+    if (!(box.read("customerId") == null)) {
+      await getAccount();
+    }
     super.onInit();
+  }
+
+  Future getAccount() async {
+    return await ApiServices().getAccount();
   }
 
   List<Widget> screens = [
